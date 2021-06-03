@@ -10,6 +10,7 @@ import NormalRoute from "./routing-components/NormalRoute";
 import ProtectedRoute from "./routing-components/ProtectedRoute";
 import { getLoggedIn, logout } from "./services/auth";
 import * as PATHS from "./utils/paths";
+import * as CONSTS from "./utils/consts";
 
 class App extends React.Component {
     state = {
