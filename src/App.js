@@ -19,7 +19,7 @@ class App extends React.Component {
     };
 
     componentDidMount = () => {
-        const accessToken = localStorage.getItem("accessToken");
+        const accessToken = localStorage.getItem(CONSTS.ACCESS_TOKEN);
         if (!accessToken) {
             return this.setState({
                 isLoading: false,
@@ -41,7 +41,7 @@ class App extends React.Component {
     };
 
     handleLogout = () => {
-        const accessToken = localStorage.getItem("accessToken");
+        const accessToken = localStorage.getItem(CONSTS.ACCESS_TOKEN);
         if (!accessToken) {
             return this.setState({
                 user: null,
@@ -59,7 +59,7 @@ class App extends React.Component {
                         console.log("SOMETHING HAPPENED", res);
                     }
 
-                    localStorage.removeItem("accessToken");
+                    localStorage.removeItem(CONSTS.ACCESS_TOKEN);
                     return this.setState({
                         isLoading: false,
                         user: null,
@@ -86,7 +86,6 @@ class App extends React.Component {
                     handleLogout={this.handleLogout}
                     user={this.state.user}
                 />
-                <p>Hello Inktank</p>
                 <Switch>
                     <NormalRoute
                         exact
