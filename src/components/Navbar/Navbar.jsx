@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
+import * as PATHS from "../../utils/paths";
 
 const Navbar = (props) => {
     return (
@@ -8,6 +9,9 @@ const Navbar = (props) => {
             <Link to="/" className="nav__projectName">
                 Inktank
             </Link>
+            <Link to={PATHS.PROFILE_ARTIST}>Profile</Link>
+            <Link to={PATHS.EXPLORE}>Explore</Link>
+            <Link to={PATHS.ARTISTS}>Artists</Link>
 
             <div className="nav__authLinks">
                 {props.user ? (

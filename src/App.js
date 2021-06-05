@@ -11,6 +11,8 @@ import ProtectedRoute from "./routing-components/ProtectedRoute";
 import { getLoggedIn, logout } from "./services/auth";
 import * as PATHS from "./utils/paths";
 import * as CONSTS from "./utils/consts";
+// import ProfileArtist from "./pages/ProfileArtist";
+import Artists from "./pages/Artists";
 
 class App extends React.Component {
     state = {
@@ -109,6 +111,11 @@ class App extends React.Component {
                         path={PATHS.PROTECTEDPAGE}
                         component={ProtectedPage}
                         user={this.state.user}
+                    />
+                    <NormalRoute
+                        exact
+                        path={PATHS.ARTISTS}
+                        component={Artists}
                     />
                 </Switch>
             </div>

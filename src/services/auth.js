@@ -39,7 +39,7 @@ export function getLoggedIn() {
     return authService
         .get(`session`, {
             headers: {
-                Authorization: localStorage.getItem("accessToken"),
+                Authorization: localStorage.getItem(CONSTS.ACCESS_TOKEN),
             },
         })
         .then(successStatus)
@@ -57,7 +57,7 @@ export function logout() {
     return authService
         .delete("/logout", {
             headers: {
-                Authorization: localStorage.getItem("accessToken"),
+                Authorization: localStorage.getItem(CONSTS.ACCESS_TOKEN),
             },
         })
         .then(successStatus)
