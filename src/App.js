@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Switch } from "react-router-dom";
 import LoadingComponent from "./components/Loading";
 import Navbar from "./components/Navbar/Navbar";
@@ -13,119 +13,87 @@ import * as PATHS from "./utils/paths";
 import * as CONSTS from "./utils/consts";
 import ProfileArtist from "./pages/ProfileArtist";
 import Artists from "./pages/Artists";
+import ProfileUser from "./pages/ProfileUser";
 
-class App extends React.Component {
-    state = {
-        user: null,
-        isLoading: true,
-    };
+export default function App() {
+    const [user, setUser] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
-    componentDidMount = () => {
+    useEffect(() => {
         const accessToken = localStorage.getItem(CONSTS.ACCESS_TOKEN);
         if (!accessToken) {
-            return this.setState({
-                isLoading: false,
-            });
+            return setIsLoading(false);
         }
         getLoggedIn(accessToken).then((res) => {
             if (!res.status) {
-                console.log("RES IN CASE OF FAILURE", res);
-                // deal with failed backend call
-                return this.setState({
-                    isLoading: false,
-                });
+                return setIsLoading(false);
             }
-            this.setState({
-                user: res.data.user,
-                isLoading: false,
-            });
+            setUser(res.data.user);
+            setIsLoading(false);
         });
-    };
+    }, []);
 
-    handleLogout = () => {
+    function handleLogout() {
         const accessToken = localStorage.getItem(CONSTS.ACCESS_TOKEN);
         if (!accessToken) {
-            return this.setState({
-                user: null,
-                isLoading: false,
-            });
+            setUser(null);
+            return setIsLoading(false);
         }
-        this.setState(
-            {
-                isLoading: true,
-            },
-            () => {
-                logout(accessToken).then((res) => {
-                    if (!res.status) {
-                        // deal with error here
-                        console.log("SOMETHING HAPPENED", res);
-                    }
-
-                    localStorage.removeItem(CONSTS.ACCESS_TOKEN);
-                    return this.setState({
-                        isLoading: false,
-                        user: null,
-                    });
-                });
+        setIsLoading(true);
+        logout(accessToken).then((res) => {
+            if (!res.status) {
+                // deal with error here
+                console.error("Logout was unsuccessful: ", res);
             }
-        );
-    };
-
-    authenticate = (user) => {
-        this.setState({
-            user,
+            localStorage.removeItem(CONSTS.ACCESS_TOKEN);
+            setIsLoading(false);
+            return setUser(null);
         });
-    };
-
-    render() {
-        if (this.state.isLoading) {
-            return <LoadingComponent />;
-        }
-
-        return (
-            <div className="App">
-                <Navbar
-                    handleLogout={this.handleLogout}
-                    user={this.state.user}
-                />
-                <Switch>
-                    <NormalRoute
-                        exact
-                        path={PATHS.HOMEPAGE}
-                        component={HomePage}
-                    />
-                    <NormalRoute
-                        exact
-                        path={PATHS.SIGNUPPAGE}
-                        authenticate={this.authenticate}
-                        component={Signup}
-                    />
-                    <NormalRoute
-                        exact
-                        path={PATHS.LOGINPAGE}
-                        authenticate={this.authenticate}
-                        component={LogIn}
-                    />
-                    <ProtectedRoute
-                        exact
-                        path={PATHS.PROTECTEDPAGE}
-                        component={ProtectedPage}
-                        user={this.state.user}
-                    />
-                    <NormalRoute
-                        exact
-                        path={PATHS.ARTISTS}
-                        component={Artists}
-                    />
-                    <NormalRoute
-                        exact
-                        path={PATHS.PROFILE_ARTIST}
-                        component={ProfileArtist}
-                    />
-                </Switch>
-            </div>
-        );
     }
-}
 
-export default App;
+    function authenticate(user) {
+        setUser(user);
+    }
+
+    if (isLoading) {
+        return <LoadingComponent />;
+    }
+    return (
+        <div className="App">
+            <Navbar handleLogout={handleLogout} user={user} />
+            <Switch>
+                <NormalRoute exact path={PATHS.HOMEPAGE} component={HomePage} />
+                <NormalRoute
+                    exact
+                    path={PATHS.SIGNUPPAGE}
+                    authenticate={authenticate}
+                    component={Signup}
+                />
+                <NormalRoute
+                    exact
+                    path={PATHS.LOGINPAGE}
+                    authenticate={authenticate}
+                    component={LogIn}
+                />
+                <ProtectedRoute
+                    exact
+                    path={PATHS.PROTECTEDPAGE}
+                    component={ProtectedPage}
+                    user={user}
+                />
+                <NormalRoute exact path={PATHS.ARTISTS} component={Artists} />
+                <NormalRoute
+                    exact
+                    path={PATHS.PROFILE_ARTIST}
+                    component={ProfileArtist}
+                />
+                <ProtectedRoute
+                    exact
+                    path={PATHS.PROFILE_USER}
+                    component={ProfileUser}
+                    user={user}
+                />
+            </Switch>
+        </div>
+    );
+}
