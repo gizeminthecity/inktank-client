@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function ProfileArtist(props) {
-    // console.log("props: ", props);
+    console.log("props: ", props);
     const [artist, setArtist] = useState({});
 
     useEffect(() => {
@@ -17,7 +17,7 @@ function ProfileArtist(props) {
             .catch((err) => {
                 console.error(err);
             });
-    }, []);
+    }, [props.match.params.artistId]);
 
     return (
         <div>
@@ -26,7 +26,7 @@ function ProfileArtist(props) {
                 Location: {artist.city}, {artist.country}
             </p>
             <h2>About: {artist.about}</h2>
-            <img src={artist.picture} style={{ width: "150px" }} />
+            <img src={artist.photo} style={{ width: "150px" }} alt="artist" />
             <h2> Price: {artist.price}</h2>
             <h2>Consultation Fee: {artist.consultation}</h2>
         </div>

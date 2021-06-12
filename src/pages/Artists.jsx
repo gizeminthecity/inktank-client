@@ -30,8 +30,9 @@ function Artists() {
                         <Link to={`${PATHS.ARTISTS}/${artist._id}`}>
                             <h2>{artist.name}</h2>
                             <img
-                                src={artist.picture}
+                                src={artist.photo}
                                 style={{ width: "100px" }}
+                                alt="artist"
                             />
                         </Link>
                     </section>

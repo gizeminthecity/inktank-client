@@ -8,8 +8,9 @@ export default function Signup({ authenticate, history }) {
     const [form, setForm] = useState({
         username: "",
         password: "",
+        email: "",
     });
-    const { username, password } = form;
+    const { username, password, email } = form;
     const [error, setError] = useState(null);
 
     function handleInputChange(event) {
@@ -18,10 +19,12 @@ export default function Signup({ authenticate, history }) {
     }
 
     function handleFormSubmission(event) {
+        // console.log("EVENT: ", event);
         event.preventDefault();
         const credentials = {
             username,
             password,
+            email,
         };
         signup(credentials).then((res) => {
             if (!res.status) {
@@ -48,7 +51,7 @@ export default function Signup({ authenticate, history }) {
                     id="input-username"
                     type="text"
                     name="username"
-                    placeholder="Text"
+                    placeholder="Username"
                     value={username}
                     onChange={handleInputChange}
                     required
@@ -65,17 +68,26 @@ export default function Signup({ authenticate, history }) {
                     required
                     minLength="8"
                 />
-
+                <label htmlFor="input-email">Email</label>
+                <input
+                    id="input-email"
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={handleInputChange}
+                    required
+                    minLength="8"
+                />
+                <button className="button__submit" type="submit">
+                    Submit
+                </button>
                 {error && (
                     <div className="error-block">
                         <p>There was an error submiting the form:</p>
                         <p>{error.message}</p>
                     </div>
                 )}
-
-                <button className="button__submit" type="submit">
-                    Submit
-                </button>
             </form>
         </div>
     );

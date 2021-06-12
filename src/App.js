@@ -4,7 +4,7 @@ import LoadingComponent from "./components/Loading";
 import Navbar from "./components/Navbar/Navbar";
 import HomePage from "./pages/HomePage";
 import LogIn from "./pages/LogIn";
-import ProtectedPage from "./pages/ProtectedPage";
+// import ProtectedPage from "./pages/ProtectedPage";
 import Signup from "./pages/Signup";
 import NormalRoute from "./routing-components/NormalRoute";
 import ProtectedRoute from "./routing-components/ProtectedRoute";
@@ -75,12 +75,6 @@ export default function App() {
                     authenticate={authenticate}
                     component={LogIn}
                 />
-                <ProtectedRoute
-                    exact
-                    path={PATHS.PROTECTEDPAGE}
-                    component={ProtectedPage}
-                    user={user}
-                />
                 <NormalRoute exact path={PATHS.ARTISTS} component={Artists} />
                 <NormalRoute
                     exact
@@ -92,6 +86,7 @@ export default function App() {
                     path={PATHS.PROFILE_USER}
                     component={ProfileUser}
                     user={user}
+                    authenticate={authenticate}
                 />
             </Switch>
         </div>
