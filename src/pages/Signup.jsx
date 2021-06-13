@@ -4,7 +4,7 @@ import "./auth.css";
 import * as CONSTS from "../utils/consts";
 import * as PATHS from "../utils/paths";
 
-export default function Signup({ authenticate, history }) {
+export default function Signup({ user, authenticate, history }) {
     const [form, setForm] = useState({
         username: "",
         password: "",

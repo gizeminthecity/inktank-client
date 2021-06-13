@@ -5,6 +5,8 @@ import * as PATHS from "../../utils/paths";
 import * as CONSTS from "../../utils/consts";
 
 const Navbar = (props) => {
+    const { user } = props;
+
     return (
         <nav>
             <Link to={PATHS.HOMEPAGE} className="nav__projectName">
@@ -14,7 +16,7 @@ const Navbar = (props) => {
             <Link to={PATHS.ARTISTS}>Artists</Link>
 
             <div className="nav__authLinks">
-                {props.user ? (
+                {user ? (
                     <>
                         <button
                             className="nav-logoutbtn"
@@ -23,7 +25,10 @@ const Navbar = (props) => {
                             Logout
                         </button>
 
-                        <Link to={PATHS.PROFILE_USER} className="authLink">
+                        <Link
+                            to={`${PATHS.USER}/${user.username}`}
+                            className="authLink"
+                        >
                             Hey {props.user.username}!
                         </Link>
                     </>
