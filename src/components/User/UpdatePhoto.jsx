@@ -1,17 +1,20 @@
 import React from "react";
 import * as USER_SERVICE from "../../services/user.service";
 import * as CONSTS from "../../utils/consts";
-import * as PATHS from "../../utils/paths";
+// import * as PATHS from "../../utils/paths";
 
 function UpdatePhoto(props) {
     const { user, authenticate } = props;
 
-    console.log("props: ", props);
-    const [profilePhoto, setProfilePhoto] = React.useState(null);
+    // console.log("props: ", props);
+    const [profilePhoto, setProfilePhoto] = React.useState({
+        photo: user.photo,
+    });
 
     function handleChange(event) {
         // console.log("event.target: ", event.target);
-        setProfilePhoto(event.target.files[0]);
+        const image = event.target.files[0];
+        setProfilePhoto(image);
     }
 
     function handleSubmit(event) {
@@ -20,19 +23,19 @@ function UpdatePhoto(props) {
 
         if (!profilePhoto) {
             console.log("Please pick an image!");
-            return props.history.push(PATHS.HOMEPAGE);
+            return;
         }
 
         const formBody = new window.FormData();
         formBody.append("photo", profilePhoto);
 
         USER_SERVICE.UPDATE_PHOTO(formBody, accessToken)
-            .then((response) => {
-                console.log("response: ", response);
-                authenticate({ ...user, photo: response.photoFromServer });
+            .then((res) => {
+                console.log("response: ", res);
+                authenticate({ ...user, photo: res.data.photoFromServer });
             })
             .catch((err) => {
-                console.error(err);
+                console.error(err.response);
             });
     }
 

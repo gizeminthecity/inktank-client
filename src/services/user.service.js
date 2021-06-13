@@ -14,14 +14,9 @@ export function UPDATE_PROFILE(body, token) {
 }
 
 export function UPDATE_PHOTO(body, token) {
-    return userService
-        .post(`/update-photo`, body, {
-            headers: {
-                authorization: token,
-            },
-        })
-        .then((response) => {
-            console.log("Photo from server: ", response.data);
-            return response.data;
-        });
+    return userService.post(`/update-photo`, body, {
+        headers: {
+            authorization: token,
+        },
+    });
 }

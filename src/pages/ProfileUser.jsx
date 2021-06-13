@@ -8,7 +8,7 @@ function ProfileUser(props) {
 
     const [updateProfile, setUpdateProfile] = React.useState(false);
     const [updatePassword, setUpdatePassword] = React.useState(false);
-    const [updatePhoto, setUpdatePhoto] = React.useState(false);
+    const [updatePicture, setUpdatePicture] = React.useState(false);
     // console.log("props:", props);
 
     function profileToggle() {
@@ -20,7 +20,7 @@ function ProfileUser(props) {
     }
 
     function photoToggle() {
-        setUpdatePhoto(!updatePhoto);
+        setUpdatePicture(!updatePicture);
     }
 
     return (
@@ -41,7 +41,7 @@ function ProfileUser(props) {
                 <br />
 
                 <button onClick={photoToggle}>Update Profile Photo</button>
-                {updatePhoto && (
+                {updatePicture && (
                     <UpdatePhoto user={user} authenticate={authenticate} />
                 )}
                 <br />
