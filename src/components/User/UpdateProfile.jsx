@@ -2,7 +2,7 @@ import React from "react";
 import * as CONSTS from "../../utils/consts";
 import * as USER_SERVICE from "../../services/user.service";
 
-function EditProfile(props) {
+function UpdateProfile(props) {
     const { user, authenticate } = props;
     // console.log("props: ", props);
     const [form, setForm] = React.useState({
@@ -10,7 +10,7 @@ function EditProfile(props) {
         email: user.email,
     });
 
-    // console.log("form: ", form);
+    console.log("form: ", form);
 
     function handleChange(event) {
         setForm({ ...form, [event.target.name]: event.target.value });
@@ -20,7 +20,7 @@ function EditProfile(props) {
         event.preventDefault();
         const accessToken = localStorage.getItem(CONSTS.ACCESS_TOKEN);
 
-        USER_SERVICE.EDIT_PROFILE(form, accessToken)
+        USER_SERVICE.UPDATE_PROFILE(form, accessToken)
             .then((response) => {
                 console.log("response: ", response);
                 authenticate(response.data.user);
@@ -55,4 +55,4 @@ function EditProfile(props) {
     );
 }
 
-export default EditProfile;
+export default UpdateProfile;
