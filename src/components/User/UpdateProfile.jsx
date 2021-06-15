@@ -70,7 +70,7 @@ function UpdateProfile(props) {
                         onChange={handleChange}
                     ></input>
                 </div>
-                <button>Submit</button>
+                <button type="submit">Submit</button>
             </form>
             <div>
                 <button onClick={handleDelete}>Delete Account</button>

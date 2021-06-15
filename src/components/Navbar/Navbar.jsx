@@ -14,6 +14,7 @@ const Navbar = (props) => {
             </Link>
             <Link to={PATHS.EXPLORE}>Explore</Link>
             <Link to={PATHS.ARTISTS}>Artists</Link>
+            <Link to={PATHS.STUDIOS}>Studios</Link>
 
             <div className="nav__authLinks">
                 {user ? (
@@ -24,13 +25,12 @@ const Navbar = (props) => {
                         >
                             Logout
                         </button>
-
                         <Link
                             to={`${PATHS.USER}/${user.username}`}
                             className="authLink"
                         >
                             Hey {props.user.username}!
-                        </Link>
+                        </Link>{" "}
                     </>
                 ) : (
                     <>
@@ -39,7 +39,7 @@ const Navbar = (props) => {
                         </Link>
                         <Link to={PATHS.LOGINPAGE} className="authLink">
                             Log In
-                        </Link>
+                        </Link>{" "}
                     </>
                 )}
             </div>

@@ -13,8 +13,8 @@ export function GET_USER(username, token) {
     });
 }
 
-export function UPDATE_PROFILE(body, username, token) {
-    return userService.put(`/${username}/update`, body, {
+export function UPDATE_PROFILE(body, token) {
+    return userService.put(`/update`, body, {
         headers: {
             authorization: token,
         },

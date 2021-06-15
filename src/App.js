@@ -11,9 +11,11 @@ import ProtectedRoute from "./routing-components/ProtectedRoute";
 import { getLoggedIn, logout } from "./services/auth";
 import * as PATHS from "./utils/paths";
 import * as CONSTS from "./utils/consts";
-import ProfileArtist from "./pages/ProfileArtist";
-import Artists from "./pages/Artists";
 import ProfileUser from "./pages/ProfileUser";
+import SingleStudio from "./components/Studio/SingleStudio";
+import Studios from "./components/Studio/Studios";
+import AddStudio from "./components/Studio/AddStudio";
+import EditStudio from "./components/Studio/EditStudio";
 
 export default function App() {
     const [user, setUser] = useState(null);
@@ -75,18 +77,36 @@ export default function App() {
                     authenticate={authenticate}
                     component={LogIn}
                 />
-                <NormalRoute exact path={PATHS.ARTISTS} component={Artists} />
-                <NormalRoute
-                    exact
-                    path={PATHS.PROFILE_ARTIST}
-                    component={ProfileArtist}
-                />
                 <ProtectedRoute
                     exact
                     path={PATHS.PROFILE_USER}
                     component={ProfileUser}
                     user={user}
                     authenticate={authenticate}
+                />
+                <NormalRoute
+                    exact
+                    path={PATHS.STUDIOS}
+                    user={user}
+                    component={Studios}
+                />
+                <NormalRoute
+                    exact
+                    path={PATHS.SINGLE_STUDIO}
+                    user={user}
+                    component={SingleStudio}
+                />
+                <ProtectedRoute
+                    exact
+                    path={PATHS.ADD_STUDIO}
+                    component={AddStudio}
+                    user={user}
+                />
+                <ProtectedRoute
+                    exact
+                    path={PATHS.UPDATE_STUDIO}
+                    component={EditStudio}
+                    user={user}
                 />
             </Switch>
         </div>
