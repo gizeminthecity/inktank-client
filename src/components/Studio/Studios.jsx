@@ -27,7 +27,9 @@ function Studios() {
                 return (
                     <section key={studio._id}>
                         <Link to={`${PATHS.STUDIOS}/${studio._id}`}>
-                            <h4>{studio.name}</h4>
+                            <h4>
+                                {studio.name} by {studio.owner.username}
+                            </h4>
                         </Link>
                     </section>
                 );

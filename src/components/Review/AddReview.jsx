@@ -22,7 +22,7 @@ function AddReview(props) {
             )
             .then((success) => {
                 console.log("success:", success);
-                props.setStudio(success.data.studio);
+                props.updatesStudio(success.data.studio);
             })
             .catch((err) => {
                 console.error(err.response);

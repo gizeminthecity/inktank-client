@@ -10,6 +10,10 @@ function SingleStudio(props) {
     const { user, authenticate } = props;
     const [studio, setStudio] = useState({});
 
+    function updatesStudio(studio) {
+        setStudio(studio);
+    }
+
     useEffect(() => {
         axios
             .get(`${CONSTS.SERVER_URL}/studios/${props.match.params.studioId}`)
@@ -76,6 +80,8 @@ function SingleStudio(props) {
                     setStudio={setStudio}
                     user={user}
                     authenticate={authenticate}
+                    studioId={studio._id}
+                    updatesStudio={updatesStudio}
                 />
             )}
 
@@ -92,6 +98,14 @@ function SingleStudio(props) {
                     authenticate={authenticate}
                 />
             )}
+            <div>
+                {studio?.reviews?.map((review, index) => (
+                    <div key={index}>
+                        <div>{review.title}</div>
+                        <div>{review.body}</div>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 }
