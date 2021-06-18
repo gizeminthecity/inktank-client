@@ -3,7 +3,7 @@ import * as STUDIO_SERVICE from "../../services/studio.service";
 import * as CONSTS from "../../utils/consts";
 
 function UpdateStudioPhoto(props) {
-    const { studio, setStudio, updatesStudio } = props;
+    const { studio, updatesStudio } = props;
 
     const [studioPhoto, setStudioPhoto] = React.useState({
         photo: studio.photo,

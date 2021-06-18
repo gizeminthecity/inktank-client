@@ -1,7 +1,7 @@
 import React from "react";
 import * as USER_SERVICE from "../../services/user.service";
 import * as CONSTS from "../../utils/consts";
-// import * as PATHS from "../../utils/paths";
+import * as PATHS from "../../utils/paths";
 
 function UpdatePhoto(props) {
     const { user, authenticate } = props;
@@ -32,7 +32,8 @@ function UpdatePhoto(props) {
         USER_SERVICE.UPDATE_PHOTO(formBody, accessToken)
             .then((res) => {
                 console.log("response: ", res);
-                authenticate({ ...user, photo: res.data.photoFromServer });
+                setProfilePhoto({ ...user, photo: res.data.photoFromServer });
+                // props.history.push(`${PATHS.USER}/`)
             })
             .catch((err) => {
                 console.error(err.response);

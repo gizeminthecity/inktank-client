@@ -36,3 +36,11 @@ export function DELETE_USER(token) {
         },
     });
 }
+
+export function ADD_WORK(body, token, username) {
+    return userService.post(`/${username}/add-work`, body, {
+        headers: {
+            authorization: token,
+        },
+    });
+}

@@ -14,6 +14,7 @@ import * as CONSTS from "./utils/consts";
 import ProfileUser from "./pages/user/ProfileUser";
 import SingleStudio from "./pages/studio/SingleStudio";
 import Studios from "./pages/studio/Studios";
+import AddWork from "./pages/user/AddWork.jsx";
 
 export default function App() {
     const [user, setUser] = useState(null);
@@ -95,6 +96,13 @@ export default function App() {
                     path={PATHS.SINGLE_STUDIO}
                     user={user}
                     component={SingleStudio}
+                />
+                <ProtectedRoute
+                    exact
+                    path={PATHS.ADD_WORK}
+                    user={user}
+                    component={AddWork}
+                    authenticate={authenticate}
                 />
             </Switch>
         </div>

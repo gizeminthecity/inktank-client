@@ -86,6 +86,31 @@ function ProfileUser(props) {
                 )}
                 {/* <Link to={PATHS.STUDIO}>Studio Page</Link> */}
 
+                <div>
+                    {props.user.role === "Artist" ? (
+                        <Link to={`${PATHS.USER}/${user.username}/add-work`}>
+                            Add work
+                        </Link>
+                    ) : null}
+                </div>
+                <br />
+                <div>
+                    {user?.works?.map((work, index) => (
+                        <div key={index}>
+                            <div>
+                                <img
+                                    src={work.photo}
+                                    alt="work photo"
+                                    style={{ width: "150px" }}
+                                />
+                                <div>
+                                    <p>{work.caption}</p>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
                 <br />
                 <br />
             </div>

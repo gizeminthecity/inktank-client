@@ -5,6 +5,7 @@ export const PROTECTEDPAGE = "/protected";
 
 export const USER = "/user";
 export const PROFILE_USER = `${USER}/:username`;
+export const ADD_WORK = `${PROFILE_USER}/add-work`;
 
 export const STUDIOS = "/studios";
 export const SINGLE_STUDIO = `${STUDIOS}/:studioId`;
