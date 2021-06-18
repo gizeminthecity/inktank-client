@@ -1,25 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { Switch } from "react-router-dom";
+import { Switch, useHistory } from "react-router-dom";
 import LoadingComponent from "./components/Loading";
 import Navbar from "./components/Navbar/Navbar";
 import HomePage from "./pages/HomePage";
-import LogIn from "./pages/LogIn";
+import LogIn from "./pages/auth/LogIn";
 // import ProtectedPage from "./pages/ProtectedPage";
-import Signup from "./pages/Signup";
+import Signup from "./pages/auth/Signup";
 import NormalRoute from "./routing-components/NormalRoute";
 import ProtectedRoute from "./routing-components/ProtectedRoute";
 import { getLoggedIn, logout } from "./services/auth";
 import * as PATHS from "./utils/paths";
 import * as CONSTS from "./utils/consts";
-import ProfileUser from "./pages/ProfileUser";
-import SingleStudio from "./components/Studio/SingleStudio";
-import Studios from "./components/Studio/Studios";
-import AddStudio from "./components/Studio/AddStudio";
-import EditStudio from "./components/Studio/EditStudio";
+import ProfileUser from "./pages/user/ProfileUser";
+import SingleStudio from "./pages/studio/SingleStudio";
+import Studios from "./pages/studio/Studios";
 
 export default function App() {
     const [user, setUser] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+    const history = useHistory();
 
     useEffect(() => {
         const accessToken = localStorage.getItem(CONSTS.ACCESS_TOKEN);
@@ -49,6 +48,7 @@ export default function App() {
             }
             localStorage.removeItem(CONSTS.ACCESS_TOKEN);
             setIsLoading(false);
+            history.push("/");
             return setUser(null);
         });
     }
@@ -95,18 +95,6 @@ export default function App() {
                     path={PATHS.SINGLE_STUDIO}
                     user={user}
                     component={SingleStudio}
-                />
-                <ProtectedRoute
-                    exact
-                    path={PATHS.ADD_STUDIO}
-                    component={AddStudio}
-                    user={user}
-                />
-                <ProtectedRoute
-                    exact
-                    path={PATHS.UPDATE_STUDIO}
-                    component={EditStudio}
-                    user={user}
                 />
             </Switch>
         </div>

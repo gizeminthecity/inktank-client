@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import UpdatePassword from "../components/User/UpdatePassword";
-import UpdateProfile from "../components/User/UpdateProfile";
-import UpdatePhoto from "../components/User/UpdatePhoto";
-import AddStudio from "../components/Studio/AddStudio";
-import * as CONSTS from "../utils/consts";
-import * as PATHS from "../utils/paths";
-import * as USER_SERVICE from "../services/user.service";
+import UpdatePassword from "../../components/User/UpdatePassword";
+import UpdateProfile from "../../components/User/UpdateProfile";
+import UpdatePhoto from "../../components/User/UpdatePhoto";
+import AddStudio from "../../components/Studio/AddStudio";
+import * as CONSTS from "../../utils/consts";
+import * as PATHS from "../../utils/paths";
+import * as USER_SERVICE from "../../services/user.service";
 import { Link } from "react-router-dom";
 
 function ProfileUser(props) {
@@ -13,26 +13,26 @@ function ProfileUser(props) {
 
     const { authenticate } = props;
 
-    const [updateProfile, setUpdateProfile] = useState(false);
-    const [updatePassword, setUpdatePassword] = useState(false);
-    const [updatePicture, setUpdatePicture] = useState(false);
-    const [addStudio, setAddStudio] = useState(false);
+    const [displayUpdateProfile, setDisplayUpdateProfile] = useState(false);
+    const [displayUpdatePassword, setDisplayUpdatePassword] = useState(false);
+    const [displayUpdatePhoto, setDisplayUpdatePhoto] = useState(false);
+    const [displayAddStudio, setDisplayAddStudio] = useState(false);
     const accessToken = localStorage.getItem(CONSTS.ACCESS_TOKEN);
 
     // console.log("props:", props);
     function profileToggle() {
-        setUpdateProfile(!updateProfile);
+        setDisplayUpdateProfile(!displayUpdateProfile);
     }
 
     function passwordToggle() {
-        setUpdatePassword(!updatePassword);
+        setDisplayUpdatePassword(!displayUpdatePassword);
     }
 
     function photoToggle() {
-        setUpdatePicture(!updatePicture);
+        setDisplayUpdatePhoto(!displayUpdatePhoto);
     }
     function addStudioToggle() {
-        setAddStudio(!addStudio);
+        setDisplayAddStudio(!displayAddStudio);
     }
 
     useEffect(() => {
@@ -61,19 +61,19 @@ function ProfileUser(props) {
                     <Link to={}> My Studio</Link>>
                 ) : null} */}
                 <button onClick={profileToggle}>Edit Profile</button>
-                {updateProfile && (
+                {displayUpdateProfile && (
                     <UpdateProfile user={user} authenticate={authenticate} />
                 )}
                 <br />
                 <br />
                 <button onClick={photoToggle}>Update Profile Photo</button>
-                {updatePicture && (
+                {displayUpdatePhoto && (
                     <UpdatePhoto user={user} authenticate={authenticate} />
                 )}
                 <br />
                 <br />
                 <button onClick={passwordToggle}>Update Password</button>
-                {updatePassword && <UpdatePassword />}
+                {displayUpdatePassword && <UpdatePassword />}
                 <br />
                 <br />
                 {props.user.role === "Artist" ? (
@@ -81,16 +81,14 @@ function ProfileUser(props) {
                 ) : null}
                 <br />
                 <br />
-                {addStudio && (
+                {displayAddStudio && (
                     <AddStudio user={user} authenticate={authenticate} />
                 )}
                 {/* <Link to={PATHS.STUDIO}>Studio Page</Link> */}
-                <br />
-                <br />
+
                 <br />
                 <br />
             </div>
-            <Link to={PATHS.STUDIOS}>STUDIOS</Link>
         </div>
     );
 }

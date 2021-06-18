@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from "react";
 import * as CONSTS from "../../utils/consts";
 import axios from "axios";
-import EditStudio from "../Studio/EditStudio";
-import AddReview from "../Review/AddReview";
+import EditStudio from "../../components/Studio/EditStudio";
+import AddReview from "../../components/Review/AddReview";
+import UpdateStudioPhoto from "../../components/Studio/UpdateStudioPhoto";
 // import * as PATHS from "../../utils/paths";
 // import * as STUDIO_SERVICE from "../../services/studio.service";
 
 function SingleStudio(props) {
     const { user, authenticate } = props;
     const [studio, setStudio] = useState({});
+    const [updatePicture, setUpdatePicture] = useState(false);
 
     function updatesStudio(studio) {
         setStudio(studio);
+    }
+
+    function photoToggle() {
+        setUpdatePicture(!updatePicture);
     }
 
     useEffect(() => {
@@ -67,6 +73,19 @@ function SingleStudio(props) {
             <p>Consultation fee: {consultation}</p>
             <img src={photo} alt={`${name}`} style={{ width: "150px" }} />
             <br />
+            {owner === user._id ? (
+                <button onClick={photoToggle}>Update Photo</button>
+            ) : null}
+
+            {updatePicture && (
+                <UpdateStudioPhoto
+                    user={user}
+                    authenticate={authenticate}
+                    studio={studio}
+                    setStudio={setStudio}
+                    updatesStudio={updatesStudio}
+                />
+            )}
             <br />
 
             {owner !== user._id ? (

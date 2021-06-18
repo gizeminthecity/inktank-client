@@ -29,8 +29,8 @@ export function EDIT_STUDIO(body, token, studio) {
         },
     });
 }
-export function UPDATE_PHOTO(body, token) {
-    return studioService.post(`/update-photo`, body, {
+export function UPDATE_PHOTO(body, token, studio) {
+    return studioService.post(`/${studio._id}/update-photo`, body, {
         headers: {
             authorization: token,
         },

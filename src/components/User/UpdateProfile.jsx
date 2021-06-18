@@ -20,10 +20,13 @@ function UpdateProfile(props) {
         event.preventDefault();
         const accessToken = localStorage.getItem(CONSTS.ACCESS_TOKEN);
 
-        USER_SERVICE.UPDATE_PROFILE(form, accessToken)
+        USER_SERVICE.UPDATE_PROFILE({ ...form }, accessToken)
             .then((response) => {
                 console.log("response: ", response);
                 authenticate(response.data.user);
+                props.history.push(
+                    `${PATHS.USER}/${response.data.user.username}`
+                );
             })
             .catch((err) => {
                 console.error(err);
