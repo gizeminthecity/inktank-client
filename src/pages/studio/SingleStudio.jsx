@@ -5,7 +5,6 @@ import AddReview from "../../components/Review/AddReview";
 import UpdateStudioPhoto from "../../components/Studio/UpdateStudioPhoto";
 import * as PATHS from "../../utils/paths";
 import * as STUDIO_SERVICE from "../../services/studio.service";
-import axios from "axios";
 
 function SingleStudio(props) {
     const { user, authenticate } = props;
@@ -115,6 +114,26 @@ function SingleStudio(props) {
                         <div>{review.body}</div>
                     </div>
                 ))}
+            </div>
+
+            <div>
+                <h3>My Works</h3>
+
+                {studio.works?.map((work) => {
+                    return (
+                        <section key={work._id}>
+                            <Link to={`${PATHS.WORKS}/${work._id}`}>
+                                <img
+                                    src={work.photo}
+                                    alt="Artists img"
+                                    style={{ width: "150px" }}
+                                />
+                                <br />
+                                {work.caption}
+                            </Link>
+                        </section>
+                    );
+                })}
             </div>
         </div>
     );

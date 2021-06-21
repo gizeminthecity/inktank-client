@@ -6,7 +6,7 @@ import * as WORK_SERVICE from "../../services/work.service";
 import * as CONSTS from "../../utils/consts";
 
 function LikeButton(props) {
-    const { user, authenticate, work } = props;
+    const { user, authenticate, workId, work } = props;
 
     console.log("work", work._id);
 
@@ -17,14 +17,15 @@ function LikeButton(props) {
     function handleClick(event) {
         event.preventDefault();
         const accessToken = localStorage.getItem(CONSTS.ACCESS_TOKEN);
-
         // console.log(props);
 
         if (icon === false) {
             // add like to work.likes array
-            WORK_SERVICE.LIKE(work._id, accessToken)
+            WORK_SERVICE.LIKE(accessToken, workId)
                 .then((response) => {
                     console.log("response: ", response.data);
+                    setIcon(!icon);
+                    setLike(!like);
                 })
                 .catch((err) => {
                     console.log(err.response);
@@ -34,15 +35,13 @@ function LikeButton(props) {
         }
 
         console.log("BUTTON CLICKED");
-        setIcon(!icon);
-        setLike(!like);
     }
 
     return (
         <div>
-            <div style={{ border: "1px, solid, black" }}>
+            {/* <div style={{ border: "1px, solid, black" }}>
                 {user?.works?.likes?.length}
-            </div>
+            </div> */}
             <Button size="small" onClick={handleClick} variant="outlined">
                 {icon ? <FavoriteIcon /> : <FavoriteBorderIcon />}
                 {like ? "Like" : "Liked"}

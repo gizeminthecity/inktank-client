@@ -6,9 +6,14 @@ import UpdatePhoto from "../../components/User/UpdatePhoto";
 import * as CONSTS from "../../utils/consts";
 import * as PATHS from "../../utils/paths";
 import * as USER_SERVICE from "../../services/user.service";
+import LikeButton from "../../components/Work/LikeButton";
+import WorkReview from "../../components/Work/'WorkReview";
 
 function Profile(props) {
     const [user, setUser] = useState({});
+    const [addReview, setAddReview] = useState(false);
+
+    console.log(user);
 
     const { authenticate } = props;
 
@@ -28,6 +33,12 @@ function Profile(props) {
     function photoToggle() {
         setDisplayUpdatePhoto(!displayUpdatePhoto);
     }
+    function reviewToggle() {
+        setAddReview(!addReview);
+    }
+    // function updatesStudio(studio) {
+    //     setStudio(studio);
+    // }
 
     useEffect(() => {
         const accessToken = localStorage.getItem(CONSTS.ACCESS_TOKEN);
@@ -51,8 +62,46 @@ function Profile(props) {
             />
             <p>{user.role}</p>
 
-            <p>My Works</p>
+            <div>
+                <h3>My Works</h3>
 
+                {user.works?.map((work) => {
+                    return (
+                        <>
+                            <section key={work._id}>
+                                <Link to={`${PATHS.WORKS}/${work._id}`}>
+                                    <img
+                                        src={work.photo}
+                                        alt="Artists img"
+                                        style={{ width: "150px" }}
+                                    />
+                                    <br />
+                                    <div> {work.caption}</div>{" "}
+                                    <LikeButton
+                                        {...props}
+                                        work={work}
+                                        workId={work._id}
+                                    />
+                                </Link>
+                                {user ? (
+                                    <button onClick={reviewToggle}>
+                                        Add review
+                                    </button>
+                                ) : null}
+                                {addReview && (
+                                    <WorkReview
+                                        work={work}
+                                        user={user}
+                                        authenticate={authenticate}
+                                        workId={work._id}
+                                        selfDestruct={reviewToggle}
+                                    />
+                                )}
+                            </section>
+                        </>
+                    );
+                })}
+            </div>
             <div>
                 <br />
                 {/* {props.user.role === "Artist" ? (
@@ -70,6 +119,7 @@ function Profile(props) {
                 )}
                 <br />
                 <br />
+
                 <button onClick={photoToggle}>Update Profile Photo</button>
                 {displayUpdatePhoto && (
                     <UpdatePhoto
