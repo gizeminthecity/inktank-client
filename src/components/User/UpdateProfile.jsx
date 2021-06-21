@@ -2,14 +2,17 @@ import React from "react";
 import * as CONSTS from "../../utils/consts";
 import * as USER_SERVICE from "../../services/user.service";
 import * as PATHS from "../../utils/paths";
+import { useHistory } from "react-router-dom";
 
 function UpdateProfile(props) {
-    const { user, authenticate } = props;
+    const { user, authenticate, selfDestruct } = props;
     console.log("props: ", props);
     const [form, setForm] = React.useState({
         username: user.username,
         email: user.email,
     });
+
+    const history = useHistory();
 
     console.log("form: ", form);
     function handleChange(event) {
@@ -20,13 +23,12 @@ function UpdateProfile(props) {
         event.preventDefault();
         const accessToken = localStorage.getItem(CONSTS.ACCESS_TOKEN);
 
-        USER_SERVICE.UPDATE_PROFILE({ ...form }, accessToken)
+        USER_SERVICE.UPDATE_PROFILE(form, accessToken)
             .then((response) => {
                 console.log("response: ", response);
                 authenticate(response.data.user);
-                props.history.push(
-                    `${PATHS.USER}/${response.data.user.username}`
-                );
+                history.push(`/user/${response.data.user.username}`);
+                selfDestruct();
             })
             .catch((err) => {
                 console.error(err);

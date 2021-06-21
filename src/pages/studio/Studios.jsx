@@ -9,7 +9,7 @@ function Studios() {
 
     React.useEffect(() => {
         axios
-            .get(`${CONSTS.SERVER_URL}/studios`)
+            .get(`${CONSTS.SERVER_URL}/${PATHS.STUDIOS}`)
             .then((response) => {
                 console.log(response);
                 setStudios(response.data);

@@ -4,25 +4,22 @@ import * as STUDIO_SERVICE from "../../services/studio.service";
 import * as PATHS from "../../utils/paths";
 
 function AddStudio(props) {
-    // const { user, authenticate } = props;
-
     const [form, setForm] = React.useState({
         name: "",
         city: "",
         country: "",
-        photo: "",
         about: "",
         location: "",
-        // works: [],
+        consultation: "",
+        price: "",
     });
-
-    // const [studioPhoto, setStudioPhoto] = React.useState({});
 
     function handleChange(event) {
         setForm({ ...form, [event.target.name]: event.target.value });
     }
     function handleSubmit(event) {
         event.preventDefault();
+
         const accessToken = localStorage.getItem(CONSTS.ACCESS_TOKEN);
 
         STUDIO_SERVICE.ADD_STUDIO(form, accessToken)
@@ -40,35 +37,14 @@ function AddStudio(props) {
             });
     }
 
-    // function handleImageChange(event) {
-    //     // console.log("event.target: ", event.target);
-    //     const image = event.target.files[0];
-    //     setStudioPhoto(image);
-    // }
-    // function handleImageSubmit(event) {
-    //     event.preventDefault();
-    //     const accessToken = localStorage.getItem(CONSTS.ACCESS_TOKEN);
-
-    //     if (!studioPhoto) {
-    //         console.log("Please pick an image!");
-    //         return;
-    //     }
-
-    //     const formBody = new window.FormData();
-    //     formBody.append("photo", studioPhoto);
-
-    //     STUDIO_SERVICE.UPDATE_PHOTO(formBody, accessToken)
-    //         .then((res) => {
-    //             console.log("response: ", res);
-    //             authenticate({ ...user, photo: res.data.photoFromServer });
-    //         })
-    //         .catch((err) => {
-    //             console.error(err.response);
-    //         });
-    // }
-
     return (
         <div>
+            <br />
+            <br />
+            <h3>Add Studio</h3>
+            <br />
+            <br />
+
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>Studio Name: </label>
@@ -148,7 +124,7 @@ function AddStudio(props) {
                         value={form.price}
                     />
                 </div>
-
+                <br />
                 <button type="submit">Add Studio</button>
             </form>
         </div>

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import * as CONSTS from "../../utils/consts";
-import * as USER_SERVICE from "../../services/user.service";
+import * as WORK_SERVICE from "../../services/work.service";
 import * as PATHS from "../../utils/paths";
 
 function AddWork(props) {
-    const { history, authenticate } = props;
+    const { history } = props;
 
     const [post, setPost] = useState({
         photo: "",
@@ -20,16 +20,10 @@ function AddWork(props) {
         formBody.append("photo", post.photo);
         formBody.append("caption", post.caption);
 
-        USER_SERVICE.ADD_WORK(
-            formBody,
-            accessToken,
-            props.match.params.username
-        )
+        WORK_SERVICE.ADD_WORK(formBody, accessToken)
             .then((response) => {
                 console.log("response: ", response);
-                authenticate(response.data.user);
-                history.push(`/user/${response.data.user.username}`);
-                // //  ;
+                history.push(`${PATHS.WORKS}/all`);
             })
             .catch((err) => {
                 console.error(err.response);

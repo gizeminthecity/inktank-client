@@ -4,7 +4,9 @@ import "./auth.css";
 import * as CONSTS from "../../utils/consts";
 import * as PATHS from "../../utils/paths";
 
-export default function Signup({ authenticate, history }) {
+export default function Signup(props) {
+    const { authenticate, history } = props;
+
     const [form, setForm] = useState({
         username: "",
         password: "",
@@ -44,6 +46,7 @@ export default function Signup({ authenticate, history }) {
                 localStorage.setItem(CONSTS.ACCESS_TOKEN, res.data.accessToken);
                 authenticate(res.data.user);
                 history.push(PATHS.HOMEPAGE);
+                window.location.reload();
             })
             .catch((err) => console.log(err));
     }

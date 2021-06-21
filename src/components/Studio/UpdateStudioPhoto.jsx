@@ -3,7 +3,7 @@ import * as STUDIO_SERVICE from "../../services/studio.service";
 import * as CONSTS from "../../utils/consts";
 
 function UpdateStudioPhoto(props) {
-    const { studio, updatesStudio } = props;
+    const { studio, updatesStudio, selfDestruct } = props;
 
     const [studioPhoto, setStudioPhoto] = React.useState({
         photo: studio.photo,
@@ -30,6 +30,7 @@ function UpdateStudioPhoto(props) {
             .then((res) => {
                 console.log("response: ", res);
                 updatesStudio({ ...studio, photo: res.data.photoFromServer });
+                selfDestruct();
             })
             .catch((err) => {
                 console.error(err.response);

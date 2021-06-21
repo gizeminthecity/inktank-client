@@ -1,10 +1,9 @@
 import React from "react";
 import * as USER_SERVICE from "../../services/user.service";
 import * as CONSTS from "../../utils/consts";
-import * as PATHS from "../../utils/paths";
 
 function UpdatePhoto(props) {
-    const { user, authenticate } = props;
+    const { user, selfDestruct } = props;
 
     // console.log("props: ", props);
     const [profilePhoto, setProfilePhoto] = React.useState({
@@ -33,7 +32,8 @@ function UpdatePhoto(props) {
             .then((res) => {
                 console.log("response: ", res);
                 setProfilePhoto({ ...user, photo: res.data.photoFromServer });
-                // props.history.push(`${PATHS.USER}/`)
+                selfDestruct();
+                window.location.reload();
             })
             .catch((err) => {
                 console.error(err.response);

@@ -4,17 +4,22 @@ import LoadingComponent from "./components/Loading";
 import Navbar from "./components/Navbar/Navbar";
 import HomePage from "./pages/HomePage";
 import LogIn from "./pages/auth/LogIn";
-// import ProtectedPage from "./pages/ProtectedPage";
 import Signup from "./pages/auth/Signup";
 import NormalRoute from "./routing-components/NormalRoute";
 import ProtectedRoute from "./routing-components/ProtectedRoute";
 import { getLoggedIn, logout } from "./services/auth";
 import * as PATHS from "./utils/paths";
 import * as CONSTS from "./utils/consts";
-import ProfileUser from "./pages/user/ProfileUser";
+import Profile from "./pages/user/Profile";
+
+import AddStudio from "./pages/studio/AddStudio";
 import SingleStudio from "./pages/studio/SingleStudio";
 import Studios from "./pages/studio/Studios";
-import AddWork from "./pages/user/AddWork.jsx";
+import EditStudio from "./pages/studio/EditStudio";
+
+import AddWork from "./pages/work/AddWork";
+import Works from "./pages/work/Works";
+import Artists from "./pages/artist/Artists";
 
 export default function App() {
     const [user, setUser] = useState(null);
@@ -55,6 +60,7 @@ export default function App() {
     }
 
     function authenticate(user) {
+        console.log("USER: ", user);
         setUser(user);
     }
 
@@ -64,6 +70,7 @@ export default function App() {
     return (
         <div className="App">
             <Navbar handleLogout={handleLogout} user={user} />
+
             <Switch>
                 <NormalRoute exact path={PATHS.HOMEPAGE} component={HomePage} />
                 <NormalRoute
@@ -80,10 +87,25 @@ export default function App() {
                 />
                 <ProtectedRoute
                     exact
-                    path={PATHS.PROFILE_USER}
-                    component={ProfileUser}
+                    path={PATHS.PROFILE}
+                    component={Profile}
                     user={user}
                     authenticate={authenticate}
+                />
+                <ProtectedRoute
+                    exact
+                    path={PATHS.ADD_STUDIO}
+                    user={user}
+                    component={AddStudio}
+                    authenticate={authenticate}
+                />
+                <ProtectedRoute
+                    exact
+                    path={PATHS.SINGLE_STUDIO}
+                    user={user}
+                    component={SingleStudio}
+                    authenticate={authenticate}
+                    history={history}
                 />
                 <NormalRoute
                     exact
@@ -91,17 +113,32 @@ export default function App() {
                     user={user}
                     component={Studios}
                 />
-                <NormalRoute
+                <ProtectedRoute
                     exact
-                    path={PATHS.SINGLE_STUDIO}
                     user={user}
-                    component={SingleStudio}
+                    path={PATHS.EDIT_STUDIO}
+                    component={EditStudio}
+                    authenticate={authenticate}
                 />
                 <ProtectedRoute
                     exact
                     path={PATHS.ADD_WORK}
                     user={user}
                     component={AddWork}
+                    authenticate={authenticate}
+                />
+                <ProtectedRoute
+                    exact
+                    path={PATHS.WORKS}
+                    user={user}
+                    component={Works}
+                    authenticate={authenticate}
+                />
+                <ProtectedRoute
+                    exact
+                    path={PATHS.ARTISTS}
+                    user={user}
+                    component={Artists}
                     authenticate={authenticate}
                 />
             </Switch>

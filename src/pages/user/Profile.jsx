@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import UpdatePassword from "../../components/User/UpdatePassword";
 import UpdateProfile from "../../components/User/UpdateProfile";
 import UpdatePhoto from "../../components/User/UpdatePhoto";
-import AddStudio from "../../components/Studio/AddStudio";
 import * as CONSTS from "../../utils/consts";
 import * as PATHS from "../../utils/paths";
 import * as USER_SERVICE from "../../services/user.service";
-import { Link } from "react-router-dom";
 
-function ProfileUser(props) {
+function Profile(props) {
     const [user, setUser] = useState({});
 
     const { authenticate } = props;
@@ -16,8 +15,6 @@ function ProfileUser(props) {
     const [displayUpdateProfile, setDisplayUpdateProfile] = useState(false);
     const [displayUpdatePassword, setDisplayUpdatePassword] = useState(false);
     const [displayUpdatePhoto, setDisplayUpdatePhoto] = useState(false);
-    const [displayAddStudio, setDisplayAddStudio] = useState(false);
-    const accessToken = localStorage.getItem(CONSTS.ACCESS_TOKEN);
 
     // console.log("props:", props);
     function profileToggle() {
@@ -31,17 +28,16 @@ function ProfileUser(props) {
     function photoToggle() {
         setDisplayUpdatePhoto(!displayUpdatePhoto);
     }
-    function addStudioToggle() {
-        setDisplayAddStudio(!displayAddStudio);
-    }
 
     useEffect(() => {
+        const accessToken = localStorage.getItem(CONSTS.ACCESS_TOKEN);
+
         USER_SERVICE.GET_USER(props.match.params.username, accessToken)
             .then((response) => {
                 setUser(response.data.user);
             })
             .catch((err) => {
-                console.error(err);
+                console.error(err.response);
             });
     }, [props.match.params.username]);
 
@@ -55,6 +51,8 @@ function ProfileUser(props) {
             />
             <p>{user.role}</p>
 
+            <p>My Works</p>
+
             <div>
                 <br />
                 {/* {props.user.role === "Artist" ? (
@@ -62,55 +60,42 @@ function ProfileUser(props) {
                 ) : null} */}
                 <button onClick={profileToggle}>Edit Profile</button>
                 {displayUpdateProfile && (
-                    <UpdateProfile user={user} authenticate={authenticate} />
+                    <UpdateProfile
+                        user={user}
+                        authenticate={authenticate}
+                        setUser={setUser}
+                        selfDestruct={profileToggle}
+                        key={user}
+                    />
                 )}
                 <br />
                 <br />
                 <button onClick={photoToggle}>Update Profile Photo</button>
                 {displayUpdatePhoto && (
-                    <UpdatePhoto user={user} authenticate={authenticate} />
+                    <UpdatePhoto
+                        user={user}
+                        authenticate={authenticate}
+                        selfDestruct={photoToggle}
+                    />
                 )}
                 <br />
                 <br />
-                <button onClick={passwordToggle}>Update Password</button>
-                {displayUpdatePassword && <UpdatePassword />}
-                <br />
-                <br />
+                {/* <button onClick={passwordToggle}>Update Password</button>
+                {displayUpdatePassword && <UpdatePassword />} */}
                 {props.user.role === "Artist" ? (
-                    <button onClick={addStudioToggle}>Add Studio</button>
+                    <>
+                        <div>
+                            <Link to={PATHS.ADD_STUDIO}>Add Studio</Link>
+                        </div>
+                        <div>
+                            <Link to={PATHS.ADD_WORK}>Add work</Link>
+                        </div>
+                    </>
                 ) : null}
                 <br />
                 <br />
-                {displayAddStudio && (
-                    <AddStudio user={user} authenticate={authenticate} />
-                )}
-                {/* <Link to={PATHS.STUDIO}>Studio Page</Link> */}
 
-                <div>
-                    {props.user.role === "Artist" ? (
-                        <Link to={`${PATHS.USER}/${user.username}/add-work`}>
-                            Add work
-                        </Link>
-                    ) : null}
-                </div>
                 <br />
-                <div>
-                    {user?.works?.map((work, index) => (
-                        <div key={index}>
-                            <div>
-                                <img
-                                    src={work.photo}
-                                    alt="work photo"
-                                    style={{ width: "150px" }}
-                                />
-                                <div>
-                                    <p>{work.caption}</p>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-
                 <br />
                 <br />
             </div>
@@ -118,4 +103,4 @@ function ProfileUser(props) {
     );
 }
 
-export default ProfileUser;
+export default Profile;

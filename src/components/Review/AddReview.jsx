@@ -5,7 +5,6 @@ import * as CONSTS from "../../utils/consts";
 
 function AddReview(props) {
     const [form, handleChange, handleSubmit] = useForm({ title: "", body: "" });
-
     const onSubmit = handleSubmit((formValues) => {
         console.log(formValues);
         const accessToken = localStorage.getItem(CONSTS.ACCESS_TOKEN);
@@ -23,6 +22,7 @@ function AddReview(props) {
             .then((success) => {
                 console.log("success:", success);
                 props.updatesStudio(success.data.studio);
+                props.selfDestruct();
             })
             .catch((err) => {
                 console.error(err.response);
@@ -50,7 +50,7 @@ function AddReview(props) {
                         onChange={handleChange}
                     />
                 </div>
-                <button type="submit">Add Review</button>
+                <button type="submit">Send</button>
             </form>
         </div>
     );

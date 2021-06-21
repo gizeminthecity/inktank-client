@@ -13,8 +13,8 @@ export function GET_USER(username, token) {
     });
 }
 
-export function UPDATE_PROFILE(body, token, username) {
-    return userService.put(`/${username}/update`, body, {
+export function UPDATE_PROFILE(body, token) {
+    return userService.put(`/update`, body, {
         headers: {
             authorization: token,
         },
@@ -31,14 +31,6 @@ export function UPDATE_PHOTO(body, token) {
 
 export function DELETE_USER(token) {
     return userService.delete(`/delete`, {
-        headers: {
-            authorization: token,
-        },
-    });
-}
-
-export function ADD_WORK(body, token, username) {
-    return userService.post(`/${username}/add-work`, body, {
         headers: {
             authorization: token,
         },
