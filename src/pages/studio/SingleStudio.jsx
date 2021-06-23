@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import * as CONSTS from "../../utils/consts";
 import AddReview from "../../components/Review/AddReview";
 import UpdateStudioPhoto from "../../components/Studio/UpdateStudioPhoto";
@@ -31,6 +31,18 @@ function SingleStudio(props) {
                 console.error(err);
             });
     }, [props.match.params.studioId]);
+
+    function handleDelete(event) {
+        event.preventDefault();
+        const accessToken = localStorage.getItem(CONSTS.ACCESS_TOKEN);
+        STUDIO_SERVICE.DELETE(accessToken, studio._id)
+            .then(() => {
+                props.history.push(`/`);
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+    }
 
     const {
         name,
@@ -77,7 +89,7 @@ function SingleStudio(props) {
                     >
                         Edit Studio
                     </Link>
-                    {/* <button onClick={handleDelete}>Delete Studio</button> */}
+                    <button onClick={handleDelete}>Delete Studio</button>
                     <br />
                 </div>
             ) : null}

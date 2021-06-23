@@ -69,6 +69,11 @@ function Profile(props) {
                     <div>
                         <Link to={PATHS.ADD_WORK}>Add work</Link>
                     </div>
+                    <div>
+                        <Link to={`${PATHS.WORKS}/${props.user.username}`}>
+                            My Works
+                        </Link>
+                    </div>
                 </>
             ) : null}
             <br />
@@ -99,11 +104,6 @@ function Profile(props) {
             )}
             <br />
 
-            <div>
-                <Link to={`${PATHS.WORKS}/${props.user.username}`}>
-                    My Works
-                </Link>
-            </div>
             <div>
                 <br />
                 {/* {props.user.role === "Artist" ? (

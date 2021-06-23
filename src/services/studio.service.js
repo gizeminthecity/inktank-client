@@ -46,8 +46,8 @@ export function UPDATE_PHOTO(body, token, studio) {
     });
 }
 
-export function DELETE_STUDIO(token) {
-    return studioService.delete(`/delete`, {
+export function DELETE(token, studioId) {
+    return studioService.get(`/${studioId}/delete`, {
         headers: {
             authorization: token,
         },
