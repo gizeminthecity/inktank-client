@@ -20,6 +20,8 @@ import EditStudio from "./pages/studio/EditStudio";
 import AddWork from "./pages/work/AddWork";
 import Works from "./pages/work/Works";
 import Artists from "./pages/artist/Artists";
+import Explore from "./pages/Explore";
+import MyWorks from "./pages/user/MyWorks";
 
 export default function App() {
     const [user, setUser] = useState(null);
@@ -134,11 +136,25 @@ export default function App() {
                     component={Works}
                     authenticate={authenticate}
                 />
-                <ProtectedRoute
+                {/* <ProtectedRoute
                     exact
                     path={PATHS.ARTISTS}
                     user={user}
                     component={Artists}
+                    authenticate={authenticate}
+                /> */}
+                <ProtectedRoute
+                    exact
+                    path={PATHS.EXPLORE}
+                    user={user}
+                    component={Explore}
+                    authenticate={authenticate}
+                />
+                <ProtectedRoute
+                    exact
+                    path={PATHS.ARTIST_WORKS}
+                    user={user}
+                    component={MyWorks}
                     authenticate={authenticate}
                 />
             </Switch>

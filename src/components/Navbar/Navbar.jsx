@@ -16,7 +16,7 @@ const Navbar = (props) => {
             <div className="nav__authLinks">
                 {props.user ? (
                     <>
-                        <Link to={PATHS.ARTISTS}>Artists</Link>
+                        {/* <Link to={PATHS.ARTISTS}>Artists</Link> */}
 
                         <Link
                             to={`${PATHS.USER}/${props.user.username}`}

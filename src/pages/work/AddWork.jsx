@@ -23,7 +23,7 @@ function AddWork(props) {
         WORK_SERVICE.ADD_WORK(formBody, accessToken)
             .then((response) => {
                 console.log("response: ", response);
-                history.push(`${PATHS.WORKS}/all`);
+                history.push(`${PATHS.USER}/${props.user.username}`);
             })
             .catch((err) => {
                 console.error(err.response);

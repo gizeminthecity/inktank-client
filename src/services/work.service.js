@@ -5,8 +5,8 @@ const workService = axios.create({
     baseURL: `${CONSTS.SERVER_URL}/works`,
 });
 
-export function GET_WORKS(token) {
-    return workService.get(`/`, {
+export function GET_WORKS(token, username) {
+    return workService.get(`/${username}`, {
         headers: {
             authorization: token,
         },
@@ -30,6 +30,22 @@ export function LIKE(token, workId) {
 
 export function UNLIKE(token, workId) {
     return workService.put(`/${workId}`, {
+        headers: {
+            authorization: token,
+        },
+    });
+}
+
+export function EXPLORE(token) {
+    return workService.get("explore", {
+        headers: {
+            authorization: token,
+        },
+    });
+}
+
+export function DELETE(token, workId) {
+    return workService.get(`/${workId}/delete`, {
         headers: {
             authorization: token,
         },

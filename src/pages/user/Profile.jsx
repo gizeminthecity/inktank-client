@@ -6,14 +6,16 @@ import UpdatePhoto from "../../components/User/UpdatePhoto";
 import * as CONSTS from "../../utils/consts";
 import * as PATHS from "../../utils/paths";
 import * as USER_SERVICE from "../../services/user.service";
-import LikeButton from "../../components/Work/LikeButton";
-import WorkReview from "../../components/Work/'WorkReview";
 
 function Profile(props) {
     const [user, setUser] = useState({});
-    const [addReview, setAddReview] = useState(false);
+    const [isOwner, setIsOwner] = useState(false);
 
-    console.log(user);
+    const userProps = props.match.params.username;
+    const isUser = props.user.username;
+
+    // console.log("USER PROPS: ", user);
+    // console.log("MATCH: ", props.match); //
 
     const { authenticate } = props;
 
@@ -33,9 +35,7 @@ function Profile(props) {
     function photoToggle() {
         setDisplayUpdatePhoto(!displayUpdatePhoto);
     }
-    function reviewToggle() {
-        setAddReview(!addReview);
-    }
+
     // function updatesStudio(studio) {
     //     setStudio(studio);
     // }
@@ -61,93 +61,54 @@ function Profile(props) {
                 style={{ width: "150px" }}
             />
             <p>{user.role}</p>
+            {props.user.role === "Artist" ? (
+                <>
+                    <div>
+                        <Link to={PATHS.ADD_STUDIO}>Add Studio</Link>
+                    </div>
+                    <div>
+                        <Link to={PATHS.ADD_WORK}>Add work</Link>
+                    </div>
+                </>
+            ) : null}
+            <br />
+            <br />
+            {user._id ? (
+                <button onClick={profileToggle}>Edit Profile</button>
+            ) : null}
+
+            {displayUpdateProfile && (
+                <UpdateProfile
+                    user={user}
+                    authenticate={authenticate}
+                    setUser={setUser}
+                    selfDestruct={profileToggle}
+                    key={user}
+                />
+            )}
+            <br />
+            <br />
+
+            <button onClick={photoToggle}>Update Profile Photo</button>
+            {displayUpdatePhoto && (
+                <UpdatePhoto
+                    user={user}
+                    authenticate={authenticate}
+                    selfDestruct={photoToggle}
+                />
+            )}
+            <br />
 
             <div>
-                <h3>My Works</h3>
-
-                {user.works?.map((work) => {
-                    return (
-                        <>
-                            <section key={work._id}>
-                                <Link to={`${PATHS.WORKS}/${work._id}`}>
-                                    <img
-                                        src={work.photo}
-                                        alt="Artists img"
-                                        style={{ width: "150px" }}
-                                    />
-                                    <br />
-                                    <div> {work.caption}</div>{" "}
-                                    <LikeButton
-                                        {...props}
-                                        work={work}
-                                        workId={work._id}
-                                    />
-                                </Link>
-                                {user ? (
-                                    <button onClick={reviewToggle}>
-                                        Add review
-                                    </button>
-                                ) : null}
-                                {addReview && (
-                                    <WorkReview
-                                        work={work}
-                                        user={user}
-                                        authenticate={authenticate}
-                                        workId={work._id}
-                                        selfDestruct={reviewToggle}
-                                    />
-                                )}
-                            </section>
-                        </>
-                    );
-                })}
+                <Link to={`${PATHS.WORKS}/${props.user.username}`}>
+                    My Works
+                </Link>
             </div>
             <div>
                 <br />
                 {/* {props.user.role === "Artist" ? (
                     <Link to={}> My Studio</Link>>
                 ) : null} */}
-                <button onClick={profileToggle}>Edit Profile</button>
-                {displayUpdateProfile && (
-                    <UpdateProfile
-                        user={user}
-                        authenticate={authenticate}
-                        setUser={setUser}
-                        selfDestruct={profileToggle}
-                        key={user}
-                    />
-                )}
-                <br />
-                <br />
-
-                <button onClick={photoToggle}>Update Profile Photo</button>
-                {displayUpdatePhoto && (
-                    <UpdatePhoto
-                        user={user}
-                        authenticate={authenticate}
-                        selfDestruct={photoToggle}
-                    />
-                )}
-                <br />
-                <br />
-                {/* <button onClick={passwordToggle}>Update Password</button>
-                {displayUpdatePassword && <UpdatePassword />} */}
-                {props.user.role === "Artist" ? (
-                    <>
-                        <div>
-                            <Link to={PATHS.ADD_STUDIO}>Add Studio</Link>
-                        </div>
-                        <div>
-                            <Link to={PATHS.ADD_WORK}>Add work</Link>
-                        </div>
-                    </>
-                ) : null}
-                <br />
-                <br />
-
-                <br />
-                <br />
-                <br />
             </div>
         </div>
     );

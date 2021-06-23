@@ -77,6 +77,7 @@ function SingleStudio(props) {
                     >
                         Edit Studio
                     </Link>
+                    {/* <button onClick={handleDelete}>Delete Studio</button> */}
                     <br />
                 </div>
             ) : null}
@@ -114,26 +115,6 @@ function SingleStudio(props) {
                         <div>{review.body}</div>
                     </div>
                 ))}
-            </div>
-
-            <div>
-                <h3>My Works</h3>
-
-                {studio.works?.map((work) => {
-                    return (
-                        <section key={work._id}>
-                            <Link to={`${PATHS.WORKS}/${work._id}`}>
-                                <img
-                                    src={work.photo}
-                                    alt="Artists img"
-                                    style={{ width: "150px" }}
-                                />
-                                <br />
-                                {work.caption}
-                            </Link>
-                        </section>
-                    );
-                })}
             </div>
         </div>
     );

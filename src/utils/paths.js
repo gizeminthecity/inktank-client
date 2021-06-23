@@ -17,5 +17,6 @@ export const ARTIST_WORKS = `${WORKS}/:username`;
 export const ADD_WORK = `${WORKS}/add`;
 export const SINGLE_WORK = `${WORKS}/:workId`;
 
+export const EXPLORE = `${WORKS}/explore`;
+
 export const ARTISTS = "/artists";
-export const EXPLORE = "/explore";

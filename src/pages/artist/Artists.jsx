@@ -34,7 +34,10 @@ function Artists() {
                                 style={{ width: "150px" }}
                             />
                             <br />
-                            <Link to={PATHS.ARTIST_WORKS}>
+                            <Link
+                                artist={artist}
+                                to={`${PATHS.WORKS}/${artist.username}`}
+                            >
                                 {artist.username}'s Works
                             </Link>
                         </section>
