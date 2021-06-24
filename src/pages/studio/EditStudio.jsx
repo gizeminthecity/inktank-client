@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import * as STUDIO_SERVICE from "../../services/studio.service";
 import * as CONSTS from "../../utils/consts";
 import * as PATHS from "../../utils/paths";
+import "./EditStudio.css";
 
 function EditStudio(props) {
     const { user, authenticate } = props;
@@ -54,9 +55,28 @@ function EditStudio(props) {
 
     return (
         <div>
+            <h2 className="headline_edit_studio">Edit Studio</h2>
+
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label>Studio Name:</label>
+                    <input
+                        type="text"
+                        name="belong"
+                        placeholder="Username"
+                        value={form.username}
+                        onChange={handleChange}
+                    ></input>
+                </div>
+                <div>
+                    <input
+                        type="text"
+                        name="email"
+                        placeholder="Studio email"
+                        value={form.email}
+                        onChange={handleChange}
+                    ></input>
+                </div>
+                <div>
                     <input
                         type="text"
                         name="name"
@@ -66,7 +86,6 @@ function EditStudio(props) {
                     ></input>
                 </div>
                 <div>
-                    <label>About:</label>
                     <input
                         type="text"
                         name="about"
@@ -76,7 +95,15 @@ function EditStudio(props) {
                     ></input>
                 </div>
                 <div>
-                    <label>Consultation Fee: </label>
+                    <input
+                        type="text"
+                        name="location"
+                        placeholder="Enter new addresse"
+                        value={form.location}
+                        onChange={handleChange}
+                    ></input>
+                </div>
+                <div>
                     <input
                         type="number"
                         name="consultation"
@@ -86,22 +113,11 @@ function EditStudio(props) {
                     ></input>
                 </div>
                 <div>
-                    <label>Hourly Rate:</label>
                     <input
                         type="number"
                         name="price"
                         placeholder="Hourly Rate"
                         value={form.price}
-                        onChange={handleChange}
-                    ></input>
-                </div>
-                <div>
-                    <label>Location:</label>
-                    <input
-                        type="text"
-                        name="location"
-                        placeholder="Enter new addresse"
-                        value={form.location}
                         onChange={handleChange}
                     ></input>
                 </div>

@@ -1,0 +1,32 @@
+.studios_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    font-family: chalkduster;
+    margin: 50px 100px;
+}
+
+.studios_headline {
+    margin-top: 3rem;
+    font-family: chalkduster;
+}
+
+.studio_link {
+    color: black;
+    text-decoration: none;
+    font-size: 13px;
+    display: flex;
+    flex-direction: column;
+}
+
+.studio_section {
+    padding: 1.5em;
+    border: 1rem solid;
+    border-radius: 10%;
+    margin: 20px;
+}
+
+.studio_see_details {
+    font-size: 10px;
+    padding-left: 25em;
+    margin-top: 20px;
+}

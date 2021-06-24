@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import LikeButton from "../components/Work/LikeButton";
 import * as WORK_SERVICE from "../services/work.service";
 import * as STUDIO_SERVICE from "../services/studio.service";
-
+import "./Explore.css";
 function Explore(props) {
     const [works, setWorks] = React.useState([]);
     const [studios, setStudios] = React.useState([]);
@@ -39,26 +39,36 @@ function Explore(props) {
 
     return (
         <div>
-            <div>
-                <h3>Works</h3>
+            <h3 className="headline_explore"></h3>
+            <div className="explore_works">
                 {works.map((work, index) => {
                     return (
-                        <section key={work._id}>
-                            <img
-                                src={work.photo}
-                                alt="Artists img"
-                                style={{ width: "150px" }}
-                            />
-                            <br />
+                        <section className="work_section" key={work._id}>
+                            <div>
+                                <img
+                                    src={work.photo}
+                                    alt="Artists img"
+                                    style={{ width: "300px" }}
+                                />
+                            </div>
+
+                            <div className="explore_work_bottom">
+                                <div>
+                                    <p className="explore_owner">
+                                        by {work.owner.username}
+                                    </p>
+                                </div>
+                                <div>
+                                    <LikeButton
+                                        {...props}
+                                        work={work}
+                                        workId={work._id}
+                                        key={work.index}
+                                    />
+                                </div>
+                            </div>
 
                             {/* <Link to={`${PATHS.WORKS}/${work.owner.username}`}> */}
-                            <h4>by {work.owner.username}</h4>
-                            <LikeButton
-                                {...props}
-                                work={work}
-                                workId={work._id}
-                                key={work.index}
-                            />
                             {/* </Link> */}
                         </section>
                     );

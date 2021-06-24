@@ -1,0 +1,13 @@
+* {
+    font-family: chalkduster;
+}
+
+button {
+    background-color: white;
+    border-radius: 20%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}

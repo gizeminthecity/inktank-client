@@ -6,6 +6,7 @@ import UpdatePhoto from "../../components/User/UpdatePhoto";
 import * as CONSTS from "../../utils/consts";
 import * as PATHS from "../../utils/paths";
 import * as USER_SERVICE from "../../services/user.service";
+import "./Profile.css";
 
 function Profile(props) {
     const [user, setUser] = useState({});

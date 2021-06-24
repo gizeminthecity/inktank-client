@@ -47,6 +47,26 @@ function AddStudio(props) {
 
             <form onSubmit={handleSubmit}>
                 <div>
+                    <label>Username: </label>
+                    <input
+                        type="text"
+                        name="username"
+                        placeholder="Username"
+                        onChange={handleChange}
+                        value={form.username}
+                    />
+                </div>
+                <div>
+                    <label>Contact: </label>
+                    <input
+                        type="text"
+                        name="email"
+                        placeholder="Email"
+                        onChange={handleChange}
+                        value={form.email}
+                    />
+                </div>
+                <div>
                     <label>Studio Name: </label>
                     <input
                         type="text"

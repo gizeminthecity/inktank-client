@@ -3,6 +3,7 @@ import axios from "axios";
 import * as CONSTS from "../../utils/consts";
 import * as PATHS from "../../utils/paths";
 import { Link } from "react-router-dom";
+import "./Studios.css";
 
 function Studios() {
     const [studios, setStudios] = React.useState([]);
@@ -22,18 +23,33 @@ function Studios() {
 
     return (
         <div>
-            <h3>Studios</h3>
-            {studios.map((studio) => {
-                return (
-                    <section key={studio._id}>
-                        <Link to={`${PATHS.STUDIOS}/${studio._id}`}>
-                            <h4>
-                                {studio.name} by {studio.owner.username}
-                            </h4>
-                        </Link>
-                    </section>
-                );
-            })}
+            <h3 className="studios_headline">Studios</h3>
+            <div className="studios_container">
+                {studios.map((studio) => {
+                    return (
+                        <section className="studio_section" key={studio._id}>
+                            <Link
+                                className="studio_link"
+                                to={`${PATHS.STUDIOS}/${studio._id}`}
+                            >
+                                <div>
+                                    <img
+                                        src={studio.photo}
+                                        style={{ width: 150, height: 150 }}
+                                    />
+                                    <h4>
+                                        {studio.name}
+                                        {/* by {studio.owner.username} */}
+                                    </h4>
+                                </div>
+                                <div className="studio_see_details">
+                                    <p>See details</p>
+                                </div>
+                            </Link>
+                        </section>
+                    );
+                })}
+            </div>
         </div>
     );
 }

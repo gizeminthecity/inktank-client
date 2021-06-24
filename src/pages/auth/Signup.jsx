@@ -55,9 +55,9 @@ export default function Signup(props) {
 
     return (
         <div>
-            <h1>Sign Up</h1>
+            <h1 className="auth_headline">Sign Up</h1>
             <form onSubmit={handleFormSubmission} className="auth__form">
-                <label htmlFor="input-username">Username</label>
+                <label htmlFor="input-username"></label>
                 <input
                     id="input-username"
                     type="text"
@@ -68,7 +68,7 @@ export default function Signup(props) {
                     required
                 />
 
-                <label htmlFor="input-password">Password</label>
+                <label htmlFor="input-password"></label>
                 <input
                     id="input-password"
                     type="password"
@@ -79,7 +79,7 @@ export default function Signup(props) {
                     required
                     minLength="8"
                 />
-                <label htmlFor="input-email">Email</label>
+                <label htmlFor="input-email"></label>
                 <input
                     id="input-email"
                     type="email"
@@ -90,7 +90,7 @@ export default function Signup(props) {
                     required
                     minLength="8"
                 />
-                <label htmlFor="input-role">Artist or Enthusiast?</label>
+                <label htmlFor="input-role"></label>
                 <select
                     id="input-role"
                     name="role"
@@ -102,7 +102,7 @@ export default function Signup(props) {
                 </select>
 
                 <button className="button__submit" type="submit">
-                    Submit
+                    Sign Up
                 </button>
                 {error && (
                     <div className="error-block">

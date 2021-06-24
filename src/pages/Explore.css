@@ -1,0 +1,31 @@
+.explore_works {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    font-family: chalkduster;
+    margin: 100px;
+}
+
+.headline_explore {
+    margin-top: 3rem;
+    font-family: chalkduster;
+}
+
+.work_section {
+    padding: 1.5em;
+    border: 1rem;
+    border-style: solid;
+    margin: 20px;
+    border-radius: 10%;
+}
+
+.explore_owner {
+    width: 5rem;
+    font-size: 10px;
+}
+
+.explore_work_bottom {
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}

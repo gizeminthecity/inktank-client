@@ -5,6 +5,7 @@ import AddReview from "../../components/Review/AddReview";
 import UpdateStudioPhoto from "../../components/Studio/UpdateStudioPhoto";
 import * as PATHS from "../../utils/paths";
 import * as STUDIO_SERVICE from "../../services/studio.service";
+import "./SingleStudio.css";
 
 function SingleStudio(props) {
     const { user, authenticate } = props;
@@ -45,6 +46,7 @@ function SingleStudio(props) {
     }
 
     const {
+        email,
         name,
         owner,
         about,
@@ -67,66 +69,103 @@ function SingleStudio(props) {
     }
     return (
         <div>
-            <h2>Studio Name: {name}</h2>
-            <p>
-                Location: {city},{country}
-            </p>
-            <p> Studio belongs to {owner}</p>
-            <p>About: {about}</p>
-            <p>Addresse: {location}</p>
-            <p>Hourly rate: {price}</p>
-            <p>Consultation fee: {consultation}</p>
-            <img src={photo} alt={`${name}`} style={{ width: "150px" }} />
-            <br />
-            {owner === user._id ? (
-                <div>
-                    <button onClick={photoToggle}>Update Photo</button>
-                    <br />
-
-                    <br />
-                    <Link
-                        to={`${PATHS.STUDIOS}/${props.match.params.studioId}/edit`}
-                    >
-                        Edit Studio
-                    </Link>
-                    <button onClick={handleDelete}>Delete Studio</button>
-                    <br />
+            <div className="studio_info_container">
+                <div className="imageSub">
+                    <img src={photo} alt={`${name}`} />
+                    <div className="blackbg"></div>
+                    <div className="label"> {name}</div>
                 </div>
-            ) : null}
-            <br />
-            <br />
-            {user ? <button onClick={reviewToggle}>Add review</button> : null}
-            {addReview && (
-                <AddReview
-                    studio={studio}
-                    setStudio={setStudio}
-                    user={user}
-                    authenticate={authenticate}
-                    studioId={studio._id}
-                    updatesStudio={updatesStudio}
-                    selfDestruct={reviewToggle}
-                />
-            )}
-            {updatePicture && (
-                <UpdateStudioPhoto
-                    user={user}
-                    authenticate={authenticate}
-                    studio={studio}
-                    setStudio={setStudio}
-                    updatesStudio={updatesStudio}
-                    selfDestruct={photoToggle}
-                />
-            )}
-            <br />
-            <br />
-            <div>
-                {studio?.reviews?.map((review, index) => (
-                    <div key={index}>
-                        <div>{review.title}</div>
-                        <br />
-                        <div>{review.body}</div>
+                <div className="studio_info_div">
+                    <p className="info">Hourly rate: {price} $</p>
+                    <p className="info">Consultation fee: {consultation} $</p>
+                    <p className="info">
+                        Location: {city},{country}
+                    </p>
+                    <p className="info">About Studio : {about}</p>
+                    <p className="info">Addresse: {location}</p>
+                    <p className="info">Contact: {email}</p>
+                </div>
+            </div>
+            <div className="review_container">
+                <p className="headline_reviews">All reviews </p>
+                <div>
+                    {studio?.reviews?.map((review, index) => (
+                        <div className="display_reviews_container" key={index}>
+                            <div style={{ paddingLeft: 30 }}>
+                                <b>{review.title}</b>
+                            </div>
+                            <div style={{ padding: 30 }}>{review.body}</div>
+                        </div>
+                    ))}{" "}
+                </div>{" "}
+                <div>
+                    <div className="add_review_butt">
+                        {user ? (
+                            <button
+                                className="add_review_button"
+                                onClick={reviewToggle}
+                            >
+                                Add review
+                            </button>
+                        ) : null}{" "}
+                        {addReview && (
+                            <AddReview
+                                className="add_review_component"
+                                studio={studio}
+                                setStudio={setStudio}
+                                user={user}
+                                authenticate={authenticate}
+                                studioId={studio._id}
+                                updatesStudio={updatesStudio}
+                                selfDestruct={reviewToggle}
+                            />
+                        )}
                     </div>
-                ))}
+                </div>
+            </div>
+
+            <div className="owner_actions">
+                {owner === user._id ? (
+                    <>
+                        <div>
+                            <p>Owner Actions</p>
+                            <br />
+                            <div>
+                                <button
+                                    className="editStudio_button"
+                                    onClick={photoToggle}
+                                >
+                                    Update Photo
+                                </button>{" "}
+                                {updatePicture && (
+                                    <UpdateStudioPhoto
+                                        user={user}
+                                        authenticate={authenticate}
+                                        studio={studio}
+                                        setStudio={setStudio}
+                                        updatesStudio={updatesStudio}
+                                        selfDestruct={photoToggle}
+                                    />
+                                )}
+                            </div>
+                            <div>
+                                <button className="editStudio_button">
+                                    <Link
+                                        className="link"
+                                        to={`${PATHS.STUDIOS}/${props.match.params.studioId}/edit`}
+                                    >
+                                        Edit Studio
+                                    </Link>
+                                </button>
+                            </div>
+                        </div>
+                        <div>
+                            <button onClick={handleDelete}>
+                                Delete Studio
+                            </button>
+                        </div>
+                    </>
+                ) : null}
             </div>
         </div>
     );
