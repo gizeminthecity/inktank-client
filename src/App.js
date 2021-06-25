@@ -11,7 +11,7 @@ import { getLoggedIn, logout } from "./services/auth";
 import * as PATHS from "./utils/paths";
 import * as CONSTS from "./utils/consts";
 import Profile from "./pages/user/Profile";
-
+import "./App.css";
 import AddStudio from "./pages/studio/AddStudio";
 import SingleStudio from "./pages/studio/SingleStudio";
 import Studios from "./pages/studio/Studios";
@@ -69,6 +69,7 @@ export default function App() {
     if (isLoading) {
         return <LoadingComponent />;
     }
+
     return (
         <div className="App">
             <Navbar handleLogout={handleLogout} user={user} />

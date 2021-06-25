@@ -1,0 +1,15 @@
+.myWork_photo {
+    width: 300px;
+}
+.myWork_delete_button {
+    margin-top: 20px;
+}
+
+.additional {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 5px;
+    margin-left: 2px;
+    margin-right: 2px;
+}

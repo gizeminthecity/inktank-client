@@ -1,16 +1,17 @@
-.edit_studio_input {
+.studio_update_photo_button {
     font-family: "Montserrat", sans-serif;
     font-size: 17px;
     font-weight: 400;
-    margin-top: 2vh;
-    margin-bottom: 3vh;
-    padding: 1vh;
-}
-.edit_studio_submit_button {
-    font-family: "Montserrat", sans-serif;
-    font-size: 17px;
-    font-weight: 400;
-    background-color: white;
     border: 0;
-    margin-top: 5px;
+}
+
+.studio_update_photo_input {
+    font-family: "Montserrat", sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    border: 0;
+}
+
+button:hover {
+    text-decoration: underline;
 }

@@ -1,0 +1,28 @@
+.profile_photo {
+    margin-top: 5%;
+    border-radius: 50%;
+    width: 350px;
+    height: 350px;
+}
+
+.profile_button {
+    font-family: "Montserrat", sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    border: 0;
+    background-color: white;
+    margin-top: 2vh;
+    margin-bottom: 5vh;
+}
+
+.profile_link {
+    text-decoration: none;
+    color: black;
+}
+
+.profile_link:hover {
+    text-decoration: underline;
+}
+.link_containers {
+    margin-bottom: 6vh;
+}

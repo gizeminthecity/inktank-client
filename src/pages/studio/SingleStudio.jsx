@@ -68,105 +68,138 @@ function SingleStudio(props) {
         setUpdatePicture(!updatePicture);
     }
     return (
-        <div>
-            <div className="studio_info_container">
+        <div className="page_container">
+            <section className="section_top">
                 <div className="imageSub">
-                    <img src={photo} alt={`${name}`} />
+                    <img src={photo} alt={`${name}`} className="studio_photo" />
                     <div className="blackbg"></div>
-                    <div className="label"> {name}</div>
                 </div>
-                <div className="studio_info_div">
-                    <p className="info">Hourly rate: {price} $</p>
-                    <p className="info">Consultation fee: {consultation} $</p>
-                    <p className="info">
-                        Location: {city},{country}
-                    </p>
-                    <p className="info">About Studio : {about}</p>
-                    <p className="info">Addresse: {location}</p>
-                    <p className="info">Contact: {email}</p>
-                </div>
-            </div>
-            <div className="review_container">
-                <p className="headline_reviews">All reviews </p>
-                <div>
-                    {studio?.reviews?.map((review, index) => (
-                        <div className="display_reviews_container" key={index}>
-                            <div style={{ paddingLeft: 30 }}>
-                                <b>{review.title}</b>
-                            </div>
-                            <div style={{ padding: 30 }}>{review.body}</div>
-                        </div>
-                    ))}{" "}
-                </div>{" "}
-                <div>
-                    <div className="add_review_butt">
-                        {user ? (
-                            <button
-                                className="add_review_button"
-                                onClick={reviewToggle}
-                            >
-                                Add review
-                            </button>
-                        ) : null}{" "}
-                        {addReview && (
-                            <AddReview
-                                className="add_review_component"
-                                studio={studio}
-                                setStudio={setStudio}
-                                user={user}
-                                authenticate={authenticate}
-                                studioId={studio._id}
-                                updatesStudio={updatesStudio}
-                                selfDestruct={reviewToggle}
-                            />
-                        )}
+                <div className="owner_actions">
+                    <div className="label">
+                        <b>{name}</b>
                     </div>
-                </div>
-            </div>
-
-            <div className="owner_actions">
-                {owner === user._id ? (
-                    <>
-                        <div>
-                            <p>Owner Actions</p>
-                            <br />
+                    {owner === user._id ? (
+                        <>
+                            <div>
+                                <Link
+                                    className="link"
+                                    to={`${PATHS.STUDIOS}/${props.match.params.studioId}/edit`}
+                                >
+                                    Edit Studio
+                                </Link>
+                            </div>
                             <div>
                                 <button
-                                    className="editStudio_button"
+                                    className="update_photo_button"
                                     onClick={photoToggle}
                                 >
                                     Update Photo
-                                </button>{" "}
-                                {updatePicture && (
-                                    <UpdateStudioPhoto
-                                        user={user}
-                                        authenticate={authenticate}
-                                        studio={studio}
-                                        setStudio={setStudio}
-                                        updatesStudio={updatesStudio}
-                                        selfDestruct={photoToggle}
-                                    />
-                                )}
-                            </div>
-                            <div>
-                                <button className="editStudio_button">
-                                    <Link
-                                        className="link"
-                                        to={`${PATHS.STUDIOS}/${props.match.params.studioId}/edit`}
-                                    >
-                                        Edit Studio
-                                    </Link>
                                 </button>
                             </div>
+                        </>
+                    ) : null}
+                </div>
+                <div className="update_photo">
+                    {updatePicture && (
+                        <UpdateStudioPhoto
+                            user={user}
+                            authenticate={authenticate}
+                            studio={studio}
+                            setStudio={setStudio}
+                            updatesStudio={updatesStudio}
+                            selfDestruct={photoToggle}
+                        />
+                    )}
+                </div>
+            </section>
+            <section className="section_bottom">
+                <div className="studio_info_container">
+                    <div className="studio_info_div">
+                        <div className="one">
+                            <p>
+                                <b>Intro</b>
+                            </p>{" "}
+                            <p className="info">
+                                From {city},{country}
+                            </p>
+                            <p>
+                                <b>About</b>
+                            </p>
+                            <p className="info">{about}</p>{" "}
+                            <p>
+                                <b>Other</b>
+                            </p>
+                            <p>Please contanct me by email</p>
                         </div>
-                        <div>
-                            <button onClick={handleDelete}>
-                                Delete Studio
-                            </button>
+                        <div className="two">
+                            <p>
+                                <b>Fee</b>
+                            </p>{" "}
+                            <p className="info">
+                                Consultation fee {consultation} $
+                            </p>
+                            <p className="info">Hourly rate {price} $</p>{" "}
+                            <p>
+                                <b>Contact</b>
+                            </p>
+                            <p className="info">{location}</p>
+                            <p className="info">{email}</p>
                         </div>
-                    </>
-                ) : null}
-            </div>
+                    </div>
+                </div>{" "}
+                <div className="review_container">
+                    <div className="review_section">
+                        {studio?.reviews?.map((review, index) => (
+                            <div
+                                className="display_reviews_container"
+                                key={index}
+                            >
+                                {" "}
+                                <div>
+                                    {" "}
+                                    <div>
+                                        <b>{review.title}</b>
+                                    </div>
+                                    <div style={{ paddingTop: 10 }}>
+                                        {review.body}
+                                    </div>
+                                </div>
+                            </div>
+                        ))}{" "}
+                    </div>{" "}
+                    <div>
+                        <div className="add_review_butt">
+                            {user ? (
+                                <button
+                                    className="add_review_button"
+                                    onClick={reviewToggle}
+                                >
+                                    Add review
+                                </button>
+                            ) : null}{" "}
+                            {addReview && (
+                                <AddReview
+                                    className="add_review_component"
+                                    studio={studio}
+                                    setStudio={setStudio}
+                                    user={user}
+                                    authenticate={authenticate}
+                                    studioId={studio._id}
+                                    updatesStudio={updatesStudio}
+                                    selfDestruct={reviewToggle}
+                                />
+                            )}
+                        </div>
+                    </div>
+                </div>
+            </section>
+            {owner === user._id ? (
+                <div>
+                    <button className="delete_button" onClick={handleDelete}>
+                        Delete Studio
+                    </button>
+                </div>
+            ) : null}
         </div>
     );
 }

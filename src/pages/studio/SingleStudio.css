@@ -1,95 +1,99 @@
-div.imageSub {
-    position: relative;
-    border-radius: 10px;
-    box-shadow: 0px 0px 0px 8px rgba(0, 0, 0, 0.3);
-}
-div.imageSub img {
-    z-index: 1;
-    width: 450px;
-    border-radius: 10px;
+.page_container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10vh;
 }
 
-div.imageSub div {
-    position: absolute;
-    left: 0%;
-    right: 0%;
-    bottom: 0;
-    padding: 4px;
-    height: 26px;
-    line-height: 26px;
-    text-align: center;
-    overflow: hidden;
-    font-family: chalkduster;
-}
-div.imageSub div.blackbg {
-    z-index: 2;
-    background-color: #000;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
-    filter: alpha(opacity=50);
-    opacity: 0.3;
-    border-radius: 0% 0% 10px 10px;
-}
-div.imageSub div.label {
-    z-index: 3;
-    color: white;
-}
-
-.studio_info_container {
-    padding: 100px;
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-}
-
-.studio_info_div {
-    font-family: chalkduster;
-    margin-left: 20%;
-    text-align: left;
-}
-
-.info {
-    padding-bottom: 10px;
-}
-
-.display_reviews_container {
-    margin-left: 100px;
-    width: 450px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 0px 8px rgba(0, 0, 0, 0.3);
-    text-align: left;
-    padding: 10px;
-    margin-top: 20px;
-    font-family: chalkduster;
-}
-.headline_reviews {
-    margin-right: 850px;
-    font-family: chalkduster;
-}
-.add_review_butt {
-    margin-top: 50px;
-    margin-right: 850px;
-}
-
-.add_review_button {
-    background-color: white;
-    font-family: chalkduster;
-    border-radius: 20%;
-    margin-bottom: 50px;
+.studio_photo {
+    height: 400px;
+    object-fit: cover;
+    width: 60%;
 }
 
 .owner_actions {
-    text-align: left;
-    padding-left: 100px;
-    padding-top: 100px;
-    padding-bottom: 100px;
+    display: flex;
+    margin-left: 38vh;
+    margin-right: 38vh;
+    margin-top: 2vh;
+    justify-content: space-between;
 }
 
-.editStudio_button {
+.update_photo_button {
+    border: 0;
+    font-family: "Montserrat", sans-serif;
+    font-size: 17px;
+    font-weight: 400;
     background-color: white;
-    padding-left: 11px;
-    padding-right: 11px;
-    margin-bottom: 50px;
+}
+.update_photo_button:hover {
+    text-decoration: underline;
 }
 .link {
-    color: black;
     text-decoration: none;
+    color: black;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+.update_photo {
+    margin-top: 5vh;
+}
+
+.section_bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.studio_info_container {
+    background-color: rgb(238, 236, 236);
+    margin: 10vh 37vh;
+}
+
+.studio_info_div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: left;
+    padding-top: 3vh;
+    padding-left: 5vh;
+    padding-bottom: 3vh;
+}
+.review_container {
+    margin: 0vh 36vh;
+}
+
+.review_section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.display_reviews_container {
+    background-color: rgb(238, 236, 236);
+    margin: 1vh;
+    padding: 5vh;
+    text-align: left;
+}
+
+.add_review_button {
+    margin-top: 5vh;
+    font-family: "Montserrat", sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    border: 0;
+    background-color: white;
+}
+
+.delete_button {
+    font-family: "Montserrat", sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    border: 0;
+    background-color: white;
+    margin-bottom: 10%;
+    margin-top: 20vh;
+}
+.one {
+}
+.two {
 }

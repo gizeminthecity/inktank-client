@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import UpdatePassword from "../../components/User/UpdatePassword";
 import UpdateProfile from "../../components/User/UpdateProfile";
 import UpdatePhoto from "../../components/User/UpdatePhoto";
 import * as CONSTS from "../../utils/consts";
@@ -55,55 +54,92 @@ function Profile(props) {
 
     return (
         <div>
-            <h1> Hi, {user.username}</h1>
-            <img
-                src={user.photo}
-                alt={`${user.username}`}
-                style={{ width: "150px" }}
-            />
-            <p>{user.role}</p>
-            {props.user.role === "Artist" ? (
-                <>
-                    <div>
-                        <Link to={PATHS.ADD_STUDIO}>Add Studio</Link>
-                    </div>
-                    <div>
-                        <Link to={PATHS.ADD_WORK}>Add work</Link>
-                    </div>
-                    <div>
-                        <Link to={`${PATHS.WORKS}/${props.user.username}`}>
-                            My Works
-                        </Link>
-                    </div>
-                </>
-            ) : null}
-            <br />
-            <br />
-            {user._id ? (
-                <button onClick={profileToggle}>Edit Profile</button>
-            ) : null}
+            <section>
+                <div>
+                    <img
+                        className="profile_photo"
+                        src={user.photo}
+                        alt={`${user.username}`}
+                    />
+                </div>
+                <div>
+                    <h1> Hi, {user.username}</h1>
 
-            {displayUpdateProfile && (
-                <UpdateProfile
-                    user={user}
-                    authenticate={authenticate}
-                    setUser={setUser}
-                    selfDestruct={profileToggle}
-                    key={user}
-                />
-            )}
-            <br />
-            <br />
+                    <p>{user.role}</p>
+                </div>
+            </section>
+            <section>
+                <div>
+                    {user._id ? (
+                        <button
+                            className="profile_button"
+                            onClick={photoToggle}
+                        >
+                            Update Profile Photo
+                        </button>
+                    ) : null}
+                    {displayUpdatePhoto && (
+                        <UpdatePhoto
+                            user={user}
+                            authenticate={authenticate}
+                            selfDestruct={photoToggle}
+                        />
+                    )}
+                </div>
+                <div>
+                    {user._id ? (
+                        <button
+                            className="profile_button"
+                            onClick={profileToggle}
+                        >
+                            Edit Profile
+                        </button>
+                    ) : null}
+                    {displayUpdateProfile && (
+                        <UpdateProfile
+                            user={user}
+                            authenticate={authenticate}
+                            setUser={setUser}
+                            selfDestruct={profileToggle}
+                            key={user}
+                        />
+                    )}
+                </div>
+                <div className="profile_link_container">
+                    {props.user.role === "Artist" ? (
+                        <>
+                            <div className="link_containers">
+                                <Link
+                                    className="profile_link"
+                                    to={PATHS.ADD_STUDIO}
+                                >
+                                    Add Studio
+                                </Link>
+                            </div>
+                            <br></br>
+                            <div className="link_containers">
+                                <Link
+                                    className="profile_link"
+                                    to={PATHS.ADD_WORK}
+                                >
+                                    Add work
+                                </Link>
+                            </div>
+                            <br></br>
 
-            <button onClick={photoToggle}>Update Profile Photo</button>
-            {displayUpdatePhoto && (
-                <UpdatePhoto
-                    user={user}
-                    authenticate={authenticate}
-                    selfDestruct={photoToggle}
-                />
-            )}
-            <br />
+                            <div className="link_containers">
+                                <Link
+                                    className="profile_link"
+                                    to={`${PATHS.WORKS}/${props.user.username}`}
+                                >
+                                    My Works
+                                </Link>
+                            </div>
+                            <br></br>
+                        </>
+                    ) : null}
+                </div>
+            </section>
 
             <div>
                 <br />

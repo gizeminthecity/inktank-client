@@ -2,6 +2,7 @@ import React from "react";
 import * as CONSTS from "../../utils/consts";
 import * as STUDIO_SERVICE from "../../services/studio.service";
 import * as PATHS from "../../utils/paths";
+import "./AddStudio.css";
 
 function AddStudio(props) {
     const [form, setForm] = React.useState({
@@ -47,8 +48,8 @@ function AddStudio(props) {
 
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label>Username: </label>
                     <input
+                        className="add_studio_input"
                         type="text"
                         name="username"
                         placeholder="Username"
@@ -57,8 +58,8 @@ function AddStudio(props) {
                     />
                 </div>
                 <div>
-                    <label>Contact: </label>
                     <input
+                        className="add_studio_input"
                         type="text"
                         name="email"
                         placeholder="Email"
@@ -67,8 +68,8 @@ function AddStudio(props) {
                     />
                 </div>
                 <div>
-                    <label>Studio Name: </label>
                     <input
+                        className="add_studio_input"
                         type="text"
                         name="name"
                         placeholder="Studio Name"
@@ -76,11 +77,10 @@ function AddStudio(props) {
                         value={form.name}
                     />
                 </div>
-                <br />
 
                 <div>
-                    <label>About: </label>
                     <input
+                        className="add_studio_input"
                         type="text"
                         name="about"
                         placeholder="About"
@@ -88,10 +88,9 @@ function AddStudio(props) {
                         value={form.about}
                     />
                 </div>
-                <br />
                 <div>
-                    <label>City: </label>
                     <input
+                        className="add_studio_input"
                         type="text"
                         name="city"
                         placeholder="City"
@@ -99,10 +98,9 @@ function AddStudio(props) {
                         value={form.city}
                     />
                 </div>
-                <br />
                 <div>
-                    <label>Country: </label>
                     <input
+                        className="add_studio_input"
                         type="text"
                         name="country"
                         placeholder="Country"
@@ -110,22 +108,19 @@ function AddStudio(props) {
                         value={form.country}
                     />
                 </div>
-                <br />
-                <br />
                 <div>
-                    <label>Location: </label>
                     <input
+                        className="add_studio_input"
                         type="text"
                         name="location"
-                        placeholder="Enter Studio Addresse"
+                        placeholder="Studio Address"
                         onChange={handleChange}
                         value={form.location}
                     />
                 </div>
-                <br />
                 <div>
-                    <label>Consultation Fee: </label>
                     <input
+                        className="add_studio_input"
                         type="number"
                         name="consultation"
                         placeholder="Consultation Fee"
@@ -133,10 +128,9 @@ function AddStudio(props) {
                         value={form.consultation}
                     />
                 </div>
-                <br />
                 <div>
-                    <label>Hourly rate: </label>
                     <input
+                        className="add_studio_input"
                         type="number"
                         name="price"
                         placeholder="Price"
@@ -144,8 +138,9 @@ function AddStudio(props) {
                         value={form.price}
                     />
                 </div>
-                <br />
-                <button type="submit">Add Studio</button>
+                <button className="add_studio_button" type="submit">
+                    Add Studio
+                </button>
             </form>
         </div>
     );

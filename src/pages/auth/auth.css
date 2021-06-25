@@ -1,3 +1,7 @@
+body {
+    position: relative;
+}
+
 form.auth__form {
     display: flex;
     justify-content: center;
@@ -6,7 +10,6 @@ form.auth__form {
     max-width: 300px;
     margin: 0 auto;
     padding-top: 2rem;
-    font-family: chalkduster;
 }
 
 form.signup__form {
@@ -17,51 +20,81 @@ form.signup__form {
     max-width: 300px;
     margin: 0 auto;
     padding-top: 2rem;
-    font-family: chalkduster;
 }
 button.button__submit {
     max-width: 100px;
     margin: 2em auto;
-    font-family: chalkduster;
     background-color: white;
 }
 
 .auth_headline {
-    font-family: chalkduster;
     margin-top: 5rem;
 }
 
 ::placeholder {
     color: black;
     font-size: 1em;
-    font-family: chalkduster;
+    font-family: "Montserrat", sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    background-color: white;
 }
 
 #input-username {
     padding: 0.5em;
     margin: 10px;
-    border-radius: 20%;
 }
 
 #input-password {
     padding: 0.5em;
-    border-radius: 20%;
     margin: 10px;
 }
 
 #input-email {
     padding: 0.5em;
-    border-radius: 20%;
     margin: 10px;
 }
 #input-role {
     padding: 0.5em;
     margin: 10px;
-    font-family: chalkduster;
-    border-radius: 20%;
+    font-family: "Montserrat", sans-serif;
+    font-size: 17px;
+    font-weight: 400;
 }
 .button__submit {
-    border-radius: 20%;
     border: 1px, solid, black;
-    padding: 5px 20px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    transition: all 0.2s ease-in-out;
+    padding: 0.5em 1em;
+    margin-left: 1em;
+    border-radius: 5%;
+    cursor: pointer;
+    color: #e3f2ff;
+    color: #18191a;
+}
+
+.button__submit:hover {
+    transform: scale(1.05);
+    background-color: #18191a;
+    color: #e4f9ff;
+    text-decoration: none;
+}
+.button__submit_signup {
+    border: 1px, solid, black;
+    font-family: "Montserrat", sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    background-color: white;
+    border-radius: 5%;
+    padding: 0.5em 1em;
+    transition: all 0.2s ease-in-out;
+    margin: 2em auto;
+}
+.button__submit_signup:hover {
+    transform: scale(1.05);
+    background-color: #18191a;
+    color: #e4f9ff;
+    text-decoration: none;
 }

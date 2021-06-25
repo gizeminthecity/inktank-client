@@ -3,6 +3,7 @@ import * as CONSTS from "../../utils/consts";
 import * as USER_SERVICE from "../../services/user.service";
 import * as PATHS from "../../utils/paths";
 import { useHistory } from "react-router-dom";
+import "./UpdateProfile.css";
 
 function UpdateProfile(props) {
     const { user, authenticate, selfDestruct } = props;
@@ -56,29 +57,36 @@ function UpdateProfile(props) {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
+            <form className="edit_profile_form" onSubmit={handleSubmit}>
                 <div>
                     <label>Username: </label>
                     <input
+                        className="edit_profile_input"
                         name="username"
                         placeholder="Username"
                         value={form.username}
                         onChange={handleChange}
+                        style={{ marginRight: 37 }}
                     ></input>
                 </div>
                 <div>
-                    <label>Email: </label>
+                    <label> Email: </label>
                     <input
+                        className="edit_profile_input"
                         name="email"
                         placeholder="Email"
                         value={form.email}
                         onChange={handleChange}
                     ></input>
                 </div>
-                <button type="submit">Submit</button>
+                <button className="edit_profile_button" type="submit">
+                    Submit
+                </button>
             </form>
             <div>
-                <button onClick={handleDelete}>Delete Account</button>
+                <button className="edit_profile_button" onClick={handleDelete}>
+                    Delete Account
+                </button>
             </div>
         </div>
     );

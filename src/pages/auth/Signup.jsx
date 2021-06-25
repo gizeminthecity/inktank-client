@@ -101,7 +101,7 @@ export default function Signup(props) {
                     ))}
                 </select>
 
-                <button className="button__submit" type="submit">
+                <button className="button__submit_signup" type="submit">
                     Sign Up
                 </button>
                 {error && (

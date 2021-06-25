@@ -11,7 +11,6 @@ function LikeButton(props) {
 
     console.log("props: ", props);
     const [icon, setIcon] = useState(false);
-    const [like, setLike] = useState("Like");
 
     function handleClick(event) {
         event.preventDefault();
@@ -30,11 +29,10 @@ function LikeButton(props) {
                 )
                 .then((success) => {
                     console.log("success:", success);
-                    if (success.data.likes.includes(success.data._id)) {
-                        setIcon(false);
-                    }
+                    // if (success.data.likes.includes(success.data._id)) {
+                    //     setIcon(false);
+                    // }
                     setIcon(!icon);
-                    setLike(!like);
                 })
                 .catch((err) => {
                     console.error(err.response);
@@ -55,7 +53,6 @@ function LikeButton(props) {
                 .then((success) => {
                     console.log("success:", success);
                     setIcon(!icon);
-                    setLike(!like);
                 })
                 .catch((err) => {
                     console.error(err.response);
@@ -67,12 +64,9 @@ function LikeButton(props) {
 
     return (
         <div>
-            <div style={{ border: "1px, solid, black" }}>
-                {user?.works?.likes?.length}
-            </div>
             <Button size="small" onClick={handleClick} variant="outlined">
                 {icon ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-                {like ? "Like" : "Liked"}
+                <div style={{ paddingLeft: 5 }}>{work.likes.length}</div>
             </Button>
         </div>
     );

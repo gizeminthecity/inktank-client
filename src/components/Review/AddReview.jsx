@@ -34,16 +34,18 @@ function AddReview(props) {
             <form onSubmit={onSubmit}>
                 <div style={{ padding: 10 }}>
                     <input
+                        className="title_input"
                         type="text"
                         name="title"
                         value={form.title}
                         onChange={handleChange}
-                        placeholder="Review title"
+                        placeholder="Title"
                     />
                 </div>
                 <div>
                     <label></label>
                     <textarea
+                        className="body_input"
                         type="text"
                         name="body"
                         value={form.body}
@@ -51,7 +53,9 @@ function AddReview(props) {
                         placeholder="..."
                     />
                 </div>
-                <button type="submit">Send</button>
+                <button className="add_review_submit" type="submit">
+                    Send
+                </button>
             </form>
         </div>
     );

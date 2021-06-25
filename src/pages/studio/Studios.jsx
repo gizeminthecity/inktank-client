@@ -35,7 +35,7 @@ function Studios() {
                                 <div>
                                     <img
                                         src={studio.photo}
-                                        style={{ width: 150, height: 150 }}
+                                        className="studio_image"
                                     />
                                     <h4>
                                         {studio.name}

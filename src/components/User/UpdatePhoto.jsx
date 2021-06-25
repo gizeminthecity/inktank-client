@@ -1,6 +1,7 @@
 import React from "react";
 import * as USER_SERVICE from "../../services/user.service";
 import * as CONSTS from "../../utils/consts";
+import "./UpdatePhoto.css";
 
 function UpdatePhoto(props) {
     const { user, selfDestruct } = props;
@@ -42,9 +43,15 @@ function UpdatePhoto(props) {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-                <input type="file" onChange={handleChange} />
-                <button type="submit">Upload</button>
+            <form className="profile_photo_form" onSubmit={handleSubmit}>
+                <input
+                    className="profile_update_photo_input"
+                    type="file"
+                    onChange={handleChange}
+                />
+                <button className="profile_update_photo_button" type="submit">
+                    Upload
+                </button>
             </form>
         </div>
     );

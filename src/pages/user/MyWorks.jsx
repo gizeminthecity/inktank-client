@@ -2,6 +2,9 @@ import React from "react";
 import * as WORK_SERVICE from "../../services/work.service";
 import * as CONSTS from "../../utils/consts";
 import * as DeleteButton from "../../components/Work/DeleteButton";
+import "./MyWorks.css";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import { Button } from "@material-ui/core";
 
 function MyWorks(props) {
     const { user } = props;
@@ -37,33 +40,45 @@ function MyWorks(props) {
     return (
         <div>
             <p>My Works</p>
-            {posts.works?.map((work) => {
-                return (
-                    <>
-                        <section key={work._id}>
-                            <img
-                                src={work.photo}
-                                alt="Artists img"
-                                style={{ width: "150px" }}
-                            />
-                            <br />
-                            <div> {work.caption}</div>
-
-                            <div>
-                                {work.owner !== user._id ? (
-                                    <button
-                                        onClick={(e) =>
-                                            handleDelete(e, work._id)
-                                        }
-                                    >
-                                        Delete
-                                    </button>
-                                ) : null}
-                            </div>
-                        </section>
-                    </>
-                );
-            })}
+            <div className="explore_works">
+                {posts.works?.map((work) => {
+                    return (
+                        <>
+                            <section className="work_section " key={work._id}>
+                                <div>
+                                    <img
+                                        className="myWork_photo"
+                                        src={work.photo}
+                                        alt="Artists img"
+                                    />
+                                </div>
+                                <div className="additional">
+                                    <div>{work.caption}</div>
+                                    <div>
+                                        <Button size="small" variant="outlined">
+                                            <FavoriteIcon />
+                                            {work.likes.length}
+                                        </Button>
+                                    </div>
+                                </div>{" "}
+                                <div className="myWork_delete_button">
+                                    {work.owner !== user._id ? (
+                                        <Button
+                                            size="small"
+                                            variant="outlined"
+                                            onClick={(e) =>
+                                                handleDelete(e, work._id)
+                                            }
+                                        >
+                                            Delete
+                                        </Button>
+                                    ) : null}
+                                </div>
+                            </section>
+                        </>
+                    );
+                })}
+            </div>
         </div>
     );
 }

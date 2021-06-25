@@ -9,19 +9,23 @@ const Navbar = (props) => {
         <nav>
             <div>
                 <Link to={PATHS.HOMEPAGE} className="nav__projectName">
-                    {CONSTS.CAPITALIZED_APP}
+                    {/* {CONSTS.CAPITALIZED_APP} */}FOTOTANK
                 </Link>
             </div>
-            <div>
-                <Link to={PATHS.EXPLORE} className="authLink">
-                    Explore
-                </Link>
-            </div>
-            <div>
-                <Link to={PATHS.STUDIOS} className="authLink">
-                    Studios
-                </Link>
-            </div>
+            {props.user ? (
+                <>
+                    <div>
+                        <Link to={PATHS.EXPLORE} className="authLink">
+                            EXPLORE
+                        </Link>
+                    </div>
+                    <div>
+                        <Link to={PATHS.STUDIOS} className="authLink">
+                            STUDIOS
+                        </Link>
+                    </div>
+                </>
+            ) : null}
 
             <div className="nav__authLinks">
                 {props.user ? (
@@ -32,7 +36,7 @@ const Navbar = (props) => {
                             to={`${PATHS.USER}/${props.user.username}`}
                             className="authLink"
                         >
-                            Profile
+                            PROFILE
                         </Link>
                         <button
                             className="nav-logoutbtn"

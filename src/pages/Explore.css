@@ -1,26 +1,24 @@
 .explore_works {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    font-family: chalkduster;
-    margin: 100px;
+    margin-top: 10vh;
+    margin-left: 18vh;
+    margin-right: 18vh;
 }
 
 .headline_explore {
     margin-top: 3rem;
-    font-family: chalkduster;
 }
 
 .work_section {
-    padding: 1.5em;
-    border: 1rem;
-    border-style: solid;
-    margin: 20px;
-    border-radius: 10%;
+    border: 1px solid;
+    border-radius: 1%;
+    padding: 3vh;
+    margin: 2vh;
 }
 
 .explore_owner {
-    width: 5rem;
-    font-size: 10px;
+    font-size: 11px;
 }
 
 .explore_work_bottom {
@@ -28,4 +26,7 @@
     display: flex;
     justify-content: space-between;
     flex-direction: row;
+}
+.explore_span {
+    font-size: 13px;
 }

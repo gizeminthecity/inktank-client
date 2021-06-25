@@ -1,13 +1,13 @@
 .studios_container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    font-family: chalkduster;
-    margin: 50px 100px;
+    margin-top: 10vh;
+    margin-left: 18vh;
+    margin-right: 18vh;
 }
 
 .studios_headline {
     margin-top: 3rem;
-    font-family: chalkduster;
 }
 
 .studio_link {
@@ -19,14 +19,19 @@
 }
 
 .studio_section {
-    padding: 1.5em;
-    border: 1rem solid;
-    border-radius: 10%;
-    margin: 20px;
+    border: 1px solid;
+    padding: 3vh;
+    margin: 2vh;
+    border-radius: 1%;
 }
 
 .studio_see_details {
     font-size: 10px;
-    padding-left: 25em;
-    margin-top: 20px;
+    margin-top: 3vh;
+    margin-left: 30vh;
+}
+
+.studio_image {
+    width: 250px;
+    height: 200px;
 }

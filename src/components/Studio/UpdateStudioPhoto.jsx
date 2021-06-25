@@ -1,6 +1,7 @@
 import React from "react";
 import * as STUDIO_SERVICE from "../../services/studio.service";
 import * as CONSTS from "../../utils/consts";
+import "./UpdateStudioPhoto.css";
 
 function UpdateStudioPhoto(props) {
     const { studio, updatesStudio, selfDestruct } = props;
@@ -39,8 +40,14 @@ function UpdateStudioPhoto(props) {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <input type="file" onChange={handleChange} />
-                <button type="submit">Upload</button>
+                <input
+                    className="studio_update_photo_input"
+                    type="file"
+                    onChange={handleChange}
+                />
+                <button className="studio_update_photo_button" type="submit">
+                    Upload
+                </button>
             </form>
         </div>
     );

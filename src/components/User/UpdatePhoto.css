@@ -1,25 +1,15 @@
-.container {
-    display: flex;
-    flex-direction: column;
-}
-
-.add_review_submit {
+.profile_update_photo_button {
     font-family: "Montserrat", sans-serif;
     font-size: 17px;
     font-weight: 400;
     border: 0;
     background-color: white;
-    margin: 5vh;
 }
 
-.title_input {
+.profile_update_photo_input {
     font-family: "Montserrat", sans-serif;
     font-size: 17px;
     font-weight: 400;
-}
-
-.body_input {
-    font-family: "Montserrat", sans-serif;
-    font-size: 17px;
-    font-weight: 400;
+    border: 0;
+    margin-bottom: 3vh;
 }

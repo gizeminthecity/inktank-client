@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import * as CONSTS from "../../utils/consts";
 import * as WORK_SERVICE from "../../services/work.service";
 import * as PATHS from "../../utils/paths";
+import "./AddWork.css";
 
 function AddWork(props) {
     const { history } = props;
@@ -39,30 +40,29 @@ function AddWork(props) {
     }
 
     return (
-        <div>
-            <h1>Add Works Here</h1>
+        <div className="add_work_container">
             <form onSubmit={handleSubmit}>
                 <div>
                     <div>
-                        <label>Upload Work</label>
-                        <br />
-                        <br />
-                        <input type="file" onChange={handleImageChange} />
-                    </div>
-
-                    <br />
-                    <div>
-                        <label>Caption: </label>
                         <input
+                            className="add_work_input extra"
+                            type="file"
+                            onChange={handleImageChange}
+                        />
+                    </div>
+                    <div>
+                        <input
+                            className="add_work_input"
                             name="caption"
                             placeholder="Add a caption"
                             value={post.caption}
                             onChange={handleChange}
                         ></input>
                     </div>
-                    <br />
                     <div>
-                        <button type="submit">Submit</button>
+                        <button className="add_work_button" type="submit">
+                            Upload
+                        </button>
                     </div>
                 </div>
             </form>

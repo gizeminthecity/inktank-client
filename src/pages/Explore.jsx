@@ -50,14 +50,19 @@ function Explore(props) {
                                     alt="Artists img"
                                     style={{ width: "300px" }}
                                 />
+                                <p></p>
                             </div>
 
                             <div className="explore_work_bottom">
                                 <div>
                                     <p className="explore_owner">
-                                        by {work.owner.username}
+                                        <b>{work.owner.username} </b>
+                                        <span className="explore_span">
+                                            {work.caption}
+                                        </span>
                                     </p>
                                 </div>
+
                                 <div>
                                     <LikeButton
                                         {...props}

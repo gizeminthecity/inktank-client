@@ -60,6 +60,7 @@ function EditStudio(props) {
             <form onSubmit={handleSubmit}>
                 <div>
                     <input
+                        className="edit_studio_input"
                         type="text"
                         name="belong"
                         placeholder="Username"
@@ -69,6 +70,7 @@ function EditStudio(props) {
                 </div>
                 <div>
                     <input
+                        className="edit_studio_input"
                         type="text"
                         name="email"
                         placeholder="Studio email"
@@ -78,6 +80,7 @@ function EditStudio(props) {
                 </div>
                 <div>
                     <input
+                        className="edit_studio_input"
                         type="text"
                         name="name"
                         placeholder="Studio Name"
@@ -87,6 +90,7 @@ function EditStudio(props) {
                 </div>
                 <div>
                     <input
+                        className="edit_studio_input"
                         type="text"
                         name="about"
                         placeholder="About Studio"
@@ -96,6 +100,7 @@ function EditStudio(props) {
                 </div>
                 <div>
                     <input
+                        className="edit_studio_input"
                         type="text"
                         name="location"
                         placeholder="Enter new addresse"
@@ -105,6 +110,7 @@ function EditStudio(props) {
                 </div>
                 <div>
                     <input
+                        className="edit_studio_input"
                         type="number"
                         name="consultation"
                         placeholder="Consultation Fee"
@@ -114,6 +120,7 @@ function EditStudio(props) {
                 </div>
                 <div>
                     <input
+                        className="edit_studio_input"
                         type="number"
                         name="price"
                         placeholder="Hourly Rate"
@@ -121,7 +128,9 @@ function EditStudio(props) {
                         onChange={handleChange}
                     ></input>
                 </div>
-                <button type="submit">Update</button>
+                <button className="edit_studio_submit_button" type="submit">
+                    Update
+                </button>
             </form>
             <br />
             <br />

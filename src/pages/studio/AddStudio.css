@@ -1,0 +1,19 @@
+.add_studio_input {
+    font-family: "Montserrat", sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    margin-top: 1.5vh;
+    margin-bottom: 5vh;
+    padding: 1vh;
+    padding-right: 7vh;
+}
+
+.add_studio_button {
+    font-family: "Montserrat", sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    border: 0;
+    background-color: white;
+    margin-top: 5vh;
+    margin-bottom: 15vh;
+}
