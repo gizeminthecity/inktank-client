@@ -18,7 +18,7 @@ function Artists() {
                 console.error(err);
             });
         return () => console.log("ARTISTS HERE");
-    }, []);
+    }, [accessToken]);
 
     return (
         <div>

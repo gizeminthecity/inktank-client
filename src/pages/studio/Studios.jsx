@@ -36,6 +36,7 @@ function Studios() {
                                     <img
                                         src={studio.photo}
                                         className="studio_image"
+                                        alt="studio foto"
                                     />
                                     <h4>
                                         {studio.name}

@@ -3,8 +3,6 @@ import * as WORK_SERVICE from "../../services/work.service";
 import * as CONSTS from "../../utils/consts";
 
 function DeleteButton(props) {
-    const { user, authenticate, workId, work } = props;
-
     function handleDelete(event) {
         event.preventDefault();
 

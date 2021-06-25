@@ -9,27 +9,15 @@ import "./Profile.css";
 
 function Profile(props) {
     const [user, setUser] = useState({});
-    const [isOwner, setIsOwner] = useState(false);
-
-    const userProps = props.match.params.username;
-    const isUser = props.user.username;
-
-    // console.log("USER PROPS: ", user);
-    // console.log("MATCH: ", props.match); //
 
     const { authenticate } = props;
 
     const [displayUpdateProfile, setDisplayUpdateProfile] = useState(false);
-    const [displayUpdatePassword, setDisplayUpdatePassword] = useState(false);
     const [displayUpdatePhoto, setDisplayUpdatePhoto] = useState(false);
 
     // console.log("props:", props);
     function profileToggle() {
         setDisplayUpdateProfile(!displayUpdateProfile);
-    }
-
-    function passwordToggle() {
-        setDisplayUpdatePassword(!displayUpdatePassword);
     }
 
     function photoToggle() {

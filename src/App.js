@@ -18,8 +18,6 @@ import Studios from "./pages/studio/Studios";
 import EditStudio from "./pages/studio/EditStudio";
 
 import AddWork from "./pages/work/AddWork";
-import Works from "./pages/work/Works";
-import Artists from "./pages/artist/Artists";
 import Explore from "./pages/Explore";
 import MyWorks from "./pages/user/MyWorks";
 
@@ -130,20 +128,7 @@ export default function App() {
                     component={AddWork}
                     authenticate={authenticate}
                 />
-                <ProtectedRoute
-                    exact
-                    path={PATHS.WORKS}
-                    user={user}
-                    component={Works}
-                    authenticate={authenticate}
-                />
-                {/* <ProtectedRoute
-                    exact
-                    path={PATHS.ARTISTS}
-                    user={user}
-                    component={Artists}
-                    authenticate={authenticate}
-                /> */}
+
                 <ProtectedRoute
                     exact
                     path={PATHS.EXPLORE}

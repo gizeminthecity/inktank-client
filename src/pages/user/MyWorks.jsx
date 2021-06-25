@@ -1,7 +1,6 @@
 import React from "react";
 import * as WORK_SERVICE from "../../services/work.service";
 import * as CONSTS from "../../utils/consts";
-import * as DeleteButton from "../../components/Work/DeleteButton";
 import "./MyWorks.css";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import { Button } from "@material-ui/core";

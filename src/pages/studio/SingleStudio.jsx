@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import * as CONSTS from "../../utils/consts";
 import AddReview from "../../components/Review/AddReview";
 import UpdateStudioPhoto from "../../components/Studio/UpdateStudioPhoto";
@@ -64,9 +64,6 @@ function SingleStudio(props) {
         setAddReview(!addReview);
     }
 
-    function photoToggle() {
-        setUpdatePicture(!updatePicture);
-    }
     return (
         <div className="page_container">
             <section className="section_top">

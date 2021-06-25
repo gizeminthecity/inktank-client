@@ -1,15 +1,15 @@
 import React from "react";
-import axios from "axios";
 import * as CONSTS from "../utils/consts";
-import * as PATHS from "../utils/paths";
-import { Link } from "react-router-dom";
 import LikeButton from "../components/Work/LikeButton";
 import * as WORK_SERVICE from "../services/work.service";
-import * as STUDIO_SERVICE from "../services/studio.service";
 import "./Explore.css";
+
+// import axios from "axios";
+// import * as PATHS from "../utils/paths";
+
 function Explore(props) {
     const [works, setWorks] = React.useState([]);
-    const [studios, setStudios] = React.useState([]);
+    // const [studios, setStudios] = React.useState([]);
     const accessToken = localStorage.getItem(CONSTS.ACCESS_TOKEN);
 
     React.useEffect(() => {
@@ -22,24 +22,23 @@ function Explore(props) {
                 console.error(err);
             });
         return () => console.log("ARTISTS HERE");
-    }, []);
+    }, [accessToken]);
 
-    React.useEffect(() => {
-        axios
-            .get(`${CONSTS.SERVER_URL}/${PATHS.STUDIOS}`)
-            .then((response) => {
-                // console.log(response);
-                setStudios(response.data);
-            })
-            .catch((err) => {
-                console.error(err);
-            });
-        return () => console.log("STUDIOS HERE");
-    }, []);
+    // React.useEffect(() => {
+    //     axios
+    //         .get(`${CONSTS.SERVER_URL}/${PATHS.STUDIOS}`)
+    //         .then((response) => {
+    //             // console.log(response);
+    //             setStudios(response.data);
+    //         })
+    //         .catch((err) => {
+    //             console.error(err);
+    //         });
+    //     return () => console.log("STUDIOS HERE");
+    // }, []);
 
     return (
         <div>
-            <h3 className="headline_explore"></h3>
             <div className="explore_works">
                 {works.map((work, index) => {
                     return (
@@ -69,12 +68,11 @@ function Explore(props) {
                                         work={work}
                                         workId={work._id}
                                         key={work.index}
+                                        works={works}
+                                        setWorks={setWorks}
                                     />
                                 </div>
                             </div>
-
-                            {/* <Link to={`${PATHS.WORKS}/${work.owner.username}`}> */}
-                            {/* </Link> */}
                         </section>
                     );
                 })}

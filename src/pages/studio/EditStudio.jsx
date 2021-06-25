@@ -5,8 +5,6 @@ import * as PATHS from "../../utils/paths";
 import "./EditStudio.css";
 
 function EditStudio(props) {
-    const { user, authenticate } = props;
-
     const [studio, setStudio] = useState({});
 
     useEffect(() => {
