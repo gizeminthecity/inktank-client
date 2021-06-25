@@ -7,42 +7,21 @@ import * as CONSTS from "../../utils/consts";
 import axios from "axios";
 
 function LikeButton(props) {
-    const { user, authenticate, workId, work } = props;
-    const likeCount = work.likes.length;
+    const { user, authenticate, workId, works, work } = props;
+    const [like, setLike] = useState(false);
+    const [getWork, setGetWork] = useState([]);
     const [icon, setIcon] = useState(false);
-    const [works, setWorks] = useState([]);
+    const likeCount = work.likes.length;
     const [counter, setCounter] = useState(likeCount);
-    // const [studios, setStudios] = React.useState([]);
     const accessToken = localStorage.getItem(CONSTS.ACCESS_TOKEN);
 
-    function checkLikes() {
-        if (works.likes.icludes(props.user._id)) {
-            setLike(true);
-            setIcon(false);
-        }
-        setLike(false);
-        setIcon(true);
-    }
-    function toggleIcon() {
-        icon ? <FavoriteIcon /> : <FavoriteBorderIcon />;
-    }
+    const workIdProps = props.match.params.workId;
 
-    React.useEffect(() => {
-        WORK_SERVICE.EXPLORE(accessToken)
-            .then(() => {
-                checkLikes();
-                // console.log(response);
-            })
-            .catch((err) => {
-                console.error(err);
-            });
-        return () => console.log("ARTISTS HERE");
-    }, [accessToken]);
+    function checkLikes() {
+        user.likes.includes(workId) ? setLike(true) : setIcon(false);
+    }
 
     console.log("props: ", props);
-    const [like, setLike] = useState(false);
-
-    const allWorks = props.works;
 
     function likePost() {
         const accessToken = localStorage.getItem(CONSTS.ACCESS_TOKEN);
@@ -77,6 +56,19 @@ function LikeButton(props) {
                 console.error(err.response);
             });
     }
+
+    React.useEffect(() => {
+        WORK_SERVICE.GET_WORK(props.workId, accessToken)
+            .then((response) => {
+                setGetWork(response.data);
+                checkLikes();
+                // console.log(response);
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+        return () => console.log("ARTISTS HERE");
+    }, []);
 
     //     //TODO change this into a patch request
 

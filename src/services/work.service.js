@@ -51,3 +51,11 @@ export function DELETE(token, workId) {
         },
     });
 }
+
+export function GET_WORK(workId, token) {
+    return workService.get(`/${workId}`, {
+        headers: {
+            authorization: token,
+        },
+    });
+}

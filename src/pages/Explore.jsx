@@ -24,19 +24,6 @@ function Explore(props) {
         return () => console.log("ARTISTS HERE");
     }, [accessToken]);
 
-    // React.useEffect(() => {
-    //     axios
-    //         .get(`${CONSTS.SERVER_URL}/${PATHS.STUDIOS}`)
-    //         .then((response) => {
-    //             // console.log(response);
-    //             setStudios(response.data);
-    //         })
-    //         .catch((err) => {
-    //             console.error(err);
-    //         });
-    //     return () => console.log("STUDIOS HERE");
-    // }, []);
-
     return (
         <div>
             <div className="explore_works">
